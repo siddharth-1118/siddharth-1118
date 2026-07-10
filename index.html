@@ -27,7 +27,7 @@
 <body class="bg-gray-900 text-gray-100 antialiased selection:bg-brand-500 selection:text-white">
 
     <nav class="fixed w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold tracking-tighter text-white">Sai<span class="text-brand-500">Siddharth</span></a>
             <div class="space-x-6 text-sm font-medium text-gray-300">
                 <a href="#about" class="hover:text-brand-500 transition-colors">About</a>
@@ -38,7 +38,7 @@
     </nav>
 
     <header id="about" class="pt-32 pb-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
+        <div class="max-w-4xl mx-auto text-center">
             <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white">
                 Building Intelligent Systems & <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-blue-500">Modern Web Experiences</span>
@@ -47,7 +47,7 @@
                 Hi, I'm Sai Siddharth. I'm a 1st-year B.Tech student at SRM Institute of Science and Technology. I specialize in full-stack development, AI operating systems, and computer vision.
             </p>
             <a href="#projects" class="bg-brand-600 hover:bg-brand-500 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg shadow-brand-500/30">
-                View My Work
+                View My Arsenal
             </a>
         </div>
     </header>
@@ -58,66 +58,140 @@
             <div class="flex flex-wrap justify-center gap-4">
                 <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Next.js</span>
                 <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Node.js</span>
-                <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Tailwind CSS</span>
+                <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Tailwind CSS v4</span>
                 <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Java (OOP)</span>
                 <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Machine Learning</span>
                 <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Computer Vision</span>
                 <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">JWT & Auth</span>
+                <span class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 shadow-sm">Three.js</span>
             </div>
         </div>
     </section>
 
     <section id="projects" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-4 text-white">Featured Projects</h2>
-            <p class="text-gray-400 mb-12">A selection of my work across full-stack development, AI, and campus utilities.</p>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Complete Project Archive</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">From AI study hubs and custom programming languages to full-stack e-commerce and computer vision integrations.</p>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 
-                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden hover:border-brand-500 transition-colors group p-6">
-                    <div class="text-brand-500 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">Academia Nexus</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">A sleek, futuristic dashboard for SRM Academia built using Next.js, Three.js, and Framer Motion.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Next.js</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Three.js</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">SRM Academic Ecosystem</h3>
-                    <p class="text-gray-400 text-sm mb-4">A suite of portals including <strong>Academia Nexus</strong>, <strong>Classivo3</strong>, and the <strong>S2 Student Portal</strong>. Features timetable management, AI attendance tracking, and data scraping via the Vcademia API.</p>
-                    <a href="https://github.com/siddharth-1118" target="_blank" class="text-brand-400 hover:text-brand-300 text-sm font-semibold inline-flex items-center">
-                        View on GitHub <span class="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                    </a>
                 </div>
 
-                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden hover:border-brand-500 transition-colors group p-6">
-                    <div class="text-brand-500 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">Classivo3</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">A premium academic companion app designed to track attendance, marks, and timetables efficiently.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Full-Stack</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Education</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Creatorlang & Devlang</h3>
-                    <p class="text-gray-400 text-sm mb-4">Custom-engineered syntax languages. <strong>Creatorlang</strong> is designed to generate images, videos, and 3D models, while <strong>VSS-Lang</strong> introduces Telugu-style English keywords to programming.</p>
-                    <a href="https://github.com/siddharth-1118" target="_blank" class="text-brand-400 hover:text-brand-300 text-sm font-semibold inline-flex items-center">
-                        View on GitHub <span class="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                    </a>
                 </div>
 
-                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden hover:border-brand-500 transition-colors group p-6">
-                    <div class="text-brand-500 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">SRM AI Study Hub & Boost-Up</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">Intelligent platforms packed with subject-wise materials, PYQs, and shared educational notes for students.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">AI Integration</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Resource Hub</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">CV Interaction Suite</h3>
-                    <p class="text-gray-400 text-sm mb-4">Projects like <strong>Hand-Gesture</strong>, <strong>Air_Draw</strong>, and <strong>Face_Unlock</strong>. Exploring interactive camera tracking interfaces and command-based authentication mechanisms.</p>
-                    <a href="https://github.com/siddharth-1118" target="_blank" class="text-brand-400 hover:text-brand-300 text-sm font-semibold inline-flex items-center">
-                        View on GitHub <span class="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                    </a>
                 </div>
 
-                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden hover:border-brand-500 transition-colors group p-6">
-                    <div class="text-brand-500 mb-4">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">Creatorlang</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">A unified custom syntax language engineered specifically to generate images, videos, and 3D models.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Compiler Design</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Generative AI</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">VSS Store & Ecosystem</h3>
-                    <p class="text-gray-400 text-sm mb-4">Including <strong>VSS-Chat</strong>, <strong>VSS-Entertainments</strong>, and <strong>Jugaad</strong>. A modular brand suite built for full-stack software solutions and integrated digital services.</p>
-                    <a href="https://github.com/siddharth-1118" target="_blank" class="text-brand-400 hover:text-brand-300 text-sm font-semibold inline-flex items-center">
-                        View on GitHub <span class="ml-1 transition-transform group-hover:translate-x-1">→</span>
-                    </a>
                 </div>
 
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">VSS-Lang & Devlang</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">Experimental programming languages. VSS-Lang uses Telugu-style English keywords, while Devlang focuses on Pythonic readability.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Custom Syntax</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Parsing</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">CV Interaction Suite</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">Includes <strong>Hand-Gesture</strong> (Iron Man style UI), <strong>Face_Unlock</strong>, and <strong>Air_Draw</strong> utilizing camera tracking and command auth.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">OpenCV</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Machine Learning</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">Campus Portal Ecosystem</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">A vast collection of collaborative utilities including <strong>S2-Class-Portal</strong>, <strong>SRM-Student-Portal</strong>, and <strong>Bumper-Up</strong>.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Web Apps</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">API Integration</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">Academia Data Collector</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">A Python script interacting with the Vcademia API to export student details, marks, and timetables to JSON/CSV/Excel.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Python</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Data Scraping</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">VSS-Chat</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">Real-time messaging platforms (including Web versions) built for secure and fast communication within the VSS ecosystem.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">WebSockets</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Real-time</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">VSS Core Modules</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">The foundation of the brand suite, featuring <strong>VSS-Entertainments</strong>, <strong>VSS-Link</strong>, <strong>Vss-ai</strong>, and experimental AI frontends.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Architecture</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">Modularity</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">Business & Solutions</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">Full-stack software solutions including <strong>Niharika Traditions</strong>, <strong>Jugaad</strong>, <strong>Stratify</strong>, and <strong>Skedio</strong>.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">E-commerce</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">SaaS</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 hover:border-brand-500 transition-colors flex flex-col">
+                    <h3 class="text-lg font-bold text-white mb-2">UI Sandboxes & Layouts</h3>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">Frontend experiments including <strong>Neon-Globe</strong>, <strong>Festival-Website</strong>, <strong>Robocon Templates</strong>, and <strong>Flowerscyclopedia</strong>.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">HTML/CSS</span>
+                        <span class="text-xs bg-gray-900 text-brand-400 px-2 py-1 rounded">UI Design</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 text-center">
+                 <a href="https://github.com/siddharth-1118" target="_blank" class="text-gray-400 hover:text-white inline-flex items-center transition-colors">
+                    View complete source code for all projects on my GitHub 
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
             </div>
         </div>
     </section>
