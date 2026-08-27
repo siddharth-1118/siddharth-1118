@@ -6,7 +6,7 @@
 
 ### 🚀 About Me
 
-I am a 1st-year B.Tech student at **SRM Institute of Science and Technology**, specializing in full-stack development, AI operating systems, and computer vision. I am passionate about building modular ecosystems, developing custom syntaxes, and engineering productivity tools that solve real-world problems.
+I am a 2nd-year B.Tech student at **SRM Institute of Science and Technology**, specializing in full-stack development, AI operating systems, and computer vision. I am passionate about building modular ecosystems, developing custom syntaxes, and engineering productivity tools that solve real-world problems.
 
 - 🎓 **Currently studying:** B.Tech at SRM (Kattankulathur)
 - 💻 **Currently working on:** The **VSS Core Ecosystem** (including VSS-Chat, VSS-Entertainments, and SIGNAL AI OS)
