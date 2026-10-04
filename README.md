@@ -4,6 +4,40 @@
   <img src="https://capsule-render.vercel.app/api?type=waving&color=8b5cf6&height=200&section=header&text=Building%20Intelligent%20Systems%20%26%20Modern%20Web%20Experiences&fontSize=24&fontColor=ffffff&animation=fadeIn&fontAlignY=38&descAlignY=51&descAlign=62" alt="Header Banner"/>
 </div>
 
+## 🚀 Flagship Project — VSS (Self-Deciding Agent)
+
+> **My most recent and most ambitious project — released this week.**
+
+### **[VSS — Self-Deciding Agent](https://github.com/siddharth-1118/vss-self-deciding-agent)**
+
+A **System-One decision intelligence model** built from scratch in PyTorch — *not* a wrapper around an LLM. Give it a state (text and/or JSON) plus a set of typed questions, and it answers **all of them in a single inference pass**, returning probability distributions, calibrated confidence, and schema-constrained outputs.
+
+```python
+from vss import VSS
+
+model = VSS.from_pretrained("runs/prototype/final")
+result = model.decide(
+    state={"message": "My card was charged twice.", "customer_age_days": 421},
+    questions=[
+        {"id": "department", "type": "choice",
+         "options": ["billing", "technical", "sales", "shipping", "other"]},
+        {"id": "refund_requested", "type": "noul"},
+        {"id": "urgency", "type": "score", "min": 0, "max": 10},
+    ],
+)
+```
+
+**Why it matters:** one forward pass produces *parallel* typed decisions instead of one answer at a time — with honest research-preview numbers rather than inflated claims.
+
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/siddharth-1118/vss-self-deciding-agent)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://github.com/siddharth-1118/vss-self-deciding-agent)
+
+<p align="left">
+  <a href="https://github.com/siddharth-1118/vss-self-deciding-agent"><img src="https://img.shields.io/badge/⭐%20View%20on%20GitHub-8b5cf6?style=for-the-badge&logo=github&logoColor=white" alt="View VSS on GitHub"/></a>
+</p>
+
+---
+
 ### 🚀 About Me
 
 I am a 2nd-year B.Tech student at **SRM Institute of Science and Technology**, specializing in full-stack development, AI operating systems, and computer vision. I am passionate about building modular ecosystems, developing custom syntaxes, and engineering productivity tools that solve real-world problems.
