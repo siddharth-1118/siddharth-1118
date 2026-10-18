@@ -1,0 +1,1138 @@
+{
+  "clusters": {
+    "ai": {
+      "name": "AI & Deep Learning",
+      "color": 9133302,
+      "hex": "#8b5cf6",
+      "center": [
+        -11,
+        4,
+        3
+      ],
+      "radius": 4.5
+    },
+    "campus": {
+      "name": "Campus Portals & Academics",
+      "color": 440020,
+      "hex": "#06b6d4",
+      "center": [
+        11,
+        4,
+        3
+      ],
+      "radius": 4.8
+    },
+    "vision": {
+      "name": "Perception & Computer Vision",
+      "color": 1096065,
+      "hex": "#10b981",
+      "center": [
+        0,
+        9,
+        -2
+      ],
+      "radius": 3.6
+    },
+    "languages": {
+      "name": "Compilers & Domain Languages",
+      "color": 16096779,
+      "hex": "#f59e0b",
+      "center": [
+        -9,
+        -4.5,
+        3
+      ],
+      "radius": 3.5
+    },
+    "systems": {
+      "name": "Realtime Chat & System OS",
+      "color": 15485081,
+      "hex": "#ec4899",
+      "center": [
+        9,
+        -4.5,
+        3
+      ],
+      "radius": 4.0
+    },
+    "apps": {
+      "name": "Web Platforms & Creative Tools",
+      "color": 3900150,
+      "hex": "#3b82f6",
+      "center": [
+        0,
+        -7.5,
+        -3
+      ],
+      "radius": 4.5
+    }
+  },
+  "nodes": [
+    {
+      "name": "placemnt-metrics",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/placemnt-metrics",
+      "cluster": "campus",
+      "pos": [
+        11.0,
+        4.0,
+        -1.45
+      ]
+    },
+    {
+      "name": "vss-office",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Go",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-office",
+      "cluster": "systems",
+      "pos": [
+        9.0,
+        -4.5,
+        -1.04
+      ]
+    },
+    {
+      "name": "ground-truth",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/ground-truth",
+      "cluster": "ai",
+      "pos": [
+        -11.0,
+        4.0,
+        -0.46
+      ]
+    },
+    {
+      "name": "meet",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/meet",
+      "cluster": "systems",
+      "pos": [
+        6.71,
+        -4.08,
+        -0.31
+      ]
+    },
+    {
+      "name": "krishi-vani",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/krishi-vani",
+      "cluster": "systems",
+      "pos": [
+        9.75,
+        -1.67,
+        0.59
+      ]
+    },
+    {
+      "name": "learn-vss",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/learn-vss",
+      "cluster": "apps",
+      "pos": [
+        -0.0,
+        -7.5,
+        -6.84
+      ]
+    },
+    {
+      "name": "bluechat",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Dart",
+      "stars": 1,
+      "url": "https://github.com/siddharth-1118/bluechat",
+      "cluster": "systems",
+      "pos": [
+        12.65,
+        -4.59,
+        1.14
+      ]
+    },
+    {
+      "name": "srm-ai-hub",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srm-ai-hub",
+      "cluster": "ai",
+      "pos": [
+        -11.3,
+        2.25,
+        0.18
+      ]
+    },
+    {
+      "name": "vss-self-deciding-agent",
+      "description": "System-One decision intelligence model: answers all typed questions in a single inference pass with calibrated probabilities. Built from scratch in PyTorch.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-self-deciding-agent",
+      "cluster": "ai",
+      "pos": [
+        -13.16,
+        4.48,
+        0.88
+      ]
+    },
+    {
+      "name": "WhistleDrop-Confidential-Reporting-System-Backend",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/WhistleDrop-Confidential-Reporting-System-Backend",
+      "cluster": "apps",
+      "pos": [
+        0.13,
+        -9.45,
+        -7.37
+      ]
+    },
+    {
+      "name": "step-sem-3",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/step-sem-3",
+      "cluster": "campus",
+      "pos": [
+        9.16,
+        4.25,
+        -0.84
+      ]
+    },
+    {
+      "name": "tutedude-task1",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/tutedude-task1",
+      "cluster": "apps",
+      "pos": [
+        -2.55,
+        -7.73,
+        -6.75
+      ]
+    },
+    {
+      "name": "vss-maps",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-maps",
+      "cluster": "systems",
+      "pos": [
+        10.19,
+        -7.82,
+        2.0
+      ]
+    },
+    {
+      "name": "ReBite-AI",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/ReBite-AI",
+      "cluster": "ai",
+      "pos": [
+        -11.17,
+        7.36,
+        0.85
+      ]
+    },
+    {
+      "name": "classivo3",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 1,
+      "url": "https://github.com/siddharth-1118/classivo3",
+      "cluster": "campus",
+      "pos": [
+        11.3,
+        6.33,
+        -0.13
+      ]
+    },
+    {
+      "name": "fix-pilot",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/fix-pilot",
+      "cluster": "apps",
+      "pos": [
+        -1.03,
+        -5.33,
+        -5.63
+      ]
+    },
+    {
+      "name": "Exam-Guard",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/Exam-Guard",
+      "cluster": "campus",
+      "pos": [
+        14.06,
+        4.64,
+        -0.07
+      ]
+    },
+    {
+      "name": "srminsider-admin-client",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srminsider-admin-client",
+      "cluster": "campus",
+      "pos": [
+        12.81,
+        1.88,
+        0.91
+      ]
+    },
+    {
+      "name": "srminsider-admin-server",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srminsider-admin-server",
+      "cluster": "campus",
+      "pos": [
+        9.88,
+        -0.09,
+        0.55
+      ]
+    },
+    {
+      "name": "vss-language",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "C",
+      "stars": 3,
+      "url": "https://github.com/siddharth-1118/vss-language",
+      "cluster": "languages",
+      "pos": [
+        -9.0,
+        -4.5,
+        -0.04
+      ]
+    },
+    {
+      "name": "Step_semester_3",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/Step_semester_3",
+      "cluster": "campus",
+      "pos": [
+        7.66,
+        2.61,
+        1.42
+      ]
+    },
+    {
+      "name": "srm-api-wrapper",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srm-api-wrapper",
+      "cluster": "campus",
+      "pos": [
+        6.91,
+        6.1,
+        1.55
+      ]
+    },
+    {
+      "name": "material-sync",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Jupyter Notebook",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/material-sync",
+      "cluster": "apps",
+      "pos": [
+        1.97,
+        -4.69,
+        -5.96
+      ]
+    },
+    {
+      "name": "altitude-forms",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/altitude-forms",
+      "cluster": "systems",
+      "pos": [
+        6.57,
+        -6.9,
+        2.69
+      ]
+    },
+    {
+      "name": "altitude-mail",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/altitude-mail",
+      "cluster": "ai",
+      "pos": [
+        -7.56,
+        5.74,
+        1.39
+      ]
+    },
+    {
+      "name": "altitude-drive",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/altitude-drive",
+      "cluster": "systems",
+      "pos": [
+        4.94,
+        -3.07,
+        3.39
+      ]
+    },
+    {
+      "name": "altitude-meet",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/altitude-meet",
+      "cluster": "systems",
+      "pos": [
+        8.63,
+        -0.64,
+        4.1
+      ]
+    },
+    {
+      "name": "campus-360",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/campus-360",
+      "cluster": "campus",
+      "pos": [
+        9.73,
+        8.84,
+        1.98
+      ]
+    },
+    {
+      "name": "classivo",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 1,
+      "url": "https://github.com/siddharth-1118/classivo",
+      "cluster": "campus",
+      "pos": [
+        13.02,
+        7.18,
+        2.62
+      ]
+    },
+    {
+      "name": "yovix",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Code",
+      "stars": 1,
+      "url": "https://github.com/siddharth-1118/yovix",
+      "cluster": "apps",
+      "pos": [
+        3.43,
+        -7.48,
+        -5.35
+      ]
+    },
+    {
+      "name": "avinya",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/avinya",
+      "cluster": "apps",
+      "pos": [
+        2.13,
+        -10.07,
+        -4.82
+      ]
+    },
+    {
+      "name": "college-book",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/college-book",
+      "cluster": "apps",
+      "pos": [
+        -0.61,
+        -11.62,
+        -4.77
+      ]
+    },
+    {
+      "name": "jugaad",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/jugaad",
+      "cluster": "systems",
+      "pos": [
+        11.52,
+        -3.24,
+        4.44
+      ]
+    },
+    {
+      "name": "Ai",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Jupyter Notebook",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/Ai",
+      "cluster": "ai",
+      "pos": [
+        -7.72,
+        1.74,
+        2.06
+      ]
+    },
+    {
+      "name": "vss-chat",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Kotlin",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-chat",
+      "cluster": "systems",
+      "pos": [
+        10.9,
+        -6.77,
+        5.45
+      ]
+    },
+    {
+      "name": "vss-chat-web",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-chat-web",
+      "cluster": "systems",
+      "pos": [
+        7.01,
+        -5.92,
+        6.47
+      ]
+    },
+    {
+      "name": "kt-consulatnacies",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/kt-consulatnacies",
+      "cluster": "apps",
+      "pos": [
+        -3.14,
+        -9.73,
+        -4.23
+      ]
+    },
+    {
+      "name": "stratify1",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Jupyter Notebook",
+      "stars": 1,
+      "url": "https://github.com/siddharth-1118/stratify1",
+      "cluster": "ai",
+      "pos": [
+        -11.2,
+        1.0,
+        2.77
+      ]
+    },
+    {
+      "name": "stratify",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Jupyter Notebook",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/stratify",
+      "cluster": "ai",
+      "pos": [
+        -14.31,
+        2.27,
+        3.29
+      ]
+    },
+    {
+      "name": "java",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Java",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/java",
+      "cluster": "languages",
+      "pos": [
+        -10.29,
+        -1.8,
+        1.27
+      ]
+    },
+    {
+      "name": "classivo-1",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/classivo-1",
+      "cluster": "campus",
+      "pos": [
+        16.17,
+        5.01,
+        3.0
+      ]
+    },
+    {
+      "name": "amma-s-pantery",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/amma-s-pantery",
+      "cluster": "apps",
+      "pos": [
+        -4.33,
+        -6.78,
+        -3.98
+      ]
+    },
+    {
+      "name": "ahu",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/ahu",
+      "cluster": "apps",
+      "pos": [
+        -2.39,
+        -4.28,
+        -3.53
+      ]
+    },
+    {
+      "name": "punishment-website",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "CSS",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/punishment-website",
+      "cluster": "apps",
+      "pos": [
+        0.51,
+        -3.3,
+        -3.18
+      ]
+    },
+    {
+      "name": "hand-getures",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/hand-getures",
+      "cluster": "vision",
+      "pos": [
+        0.0,
+        9.0,
+        -5.26
+      ]
+    },
+    {
+      "name": "srm-insider",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srm-insider",
+      "cluster": "campus",
+      "pos": [
+        13.88,
+        1.94,
+        3.36
+      ]
+    },
+    {
+      "name": "axon-labs",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/axon-labs",
+      "cluster": "apps",
+      "pos": [
+        3.56,
+        -4.53,
+        -2.8
+      ]
+    },
+    {
+      "name": "med-gemma",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/med-gemma",
+      "cluster": "ai",
+      "pos": [
+        -14.52,
+        6.17,
+        3.98
+      ]
+    },
+    {
+      "name": "interview-simulation",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/interview-simulation",
+      "cluster": "apps",
+      "pos": [
+        3.32,
+        -7.71,
+        -2.56
+      ]
+    },
+    {
+      "name": "ai-for-bahrat",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/ai-for-bahrat",
+      "cluster": "ai",
+      "pos": [
+        -10.79,
+        7.85,
+        4.61
+      ]
+    },
+    {
+      "name": "maha-shivratri",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/maha-shivratri",
+      "cluster": "apps",
+      "pos": [
+        3.23,
+        -11.03,
+        -1.94
+      ]
+    },
+    {
+      "name": "voice-analyzer",
+      "description": "\"Your Personal AI Communication Assistant. An intelligent Android app that reads, summarizes, and auto-replies to WhatsApp and SMS messages. Features selective contact integration and automated call handling when you are busy or in DND mode.\"",
+      "language": "CSS",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/voice-analyzer",
+      "cluster": "systems",
+      "pos": [
+        9.0,
+        -4.5,
+        6.42
+      ]
+    },
+    {
+      "name": "skedio",
+      "description": "Better way to manage your academics. A student portal for scheduling, attendance tracking, and academic performance prediction.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/skedio",
+      "cluster": "campus",
+      "pos": [
+        11.57,
+        -0.41,
+        3.91
+      ]
+    },
+    {
+      "name": "s2-class-portal",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/s2-class-portal",
+      "cluster": "campus",
+      "pos": [
+        7.83,
+        0.32,
+        4.53
+      ]
+    },
+    {
+      "name": "vss-link",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-link",
+      "cluster": "apps",
+      "pos": [
+        -0.16,
+        -11.3,
+        -1.78
+      ]
+    },
+    {
+      "name": "vss-entertainments",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-entertainments",
+      "cluster": "ai",
+      "pos": [
+        -7.62,
+        5.29,
+        5.31
+      ]
+    },
+    {
+      "name": "vss-lang",
+      "description": "VSS Programming Language - A Python-like language with Telugu-style English keywords",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/vss-lang",
+      "cluster": "languages",
+      "pos": [
+        -5.58,
+        -4.7,
+        3.0
+      ]
+    },
+    {
+      "name": "hand-gesture",
+      "description": "a face gesture app same as iron man suit",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/hand-gesture",
+      "cluster": "vision",
+      "pos": [
+        -2.17,
+        8.59,
+        -3.65
+      ]
+    },
+    {
+      "name": "s2-student-portal",
+      "description": "Student Portal for S2 Class - Timetable Management, Marks Upload, Attendance Tracking with AI-powered features",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/s2-student-portal",
+      "cluster": "campus",
+      "pos": [
+        7.92,
+        4.03,
+        4.34
+      ]
+    },
+    {
+      "name": "creatorlang",
+      "description": "A unified creative language to generate images, videos, and 3D models using simple, intuitive syntax. One language for all your creative content.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/creatorlang",
+      "cluster": "languages",
+      "pos": [
+        -10.31,
+        -6.57,
+        4.42
+      ]
+    },
+    {
+      "name": "devlang",
+      "description": "A simple, intuitive programming language designed for all developers - combines Python's simplicity with clear, readable syntax. Easy to learn, powerful to use.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/devlang",
+      "cluster": "languages",
+      "pos": [
+        -9.0,
+        -4.5,
+        6.15
+      ]
+    },
+    {
+      "name": "s2-student-portal-render",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/s2-student-portal-render",
+      "cluster": "campus",
+      "pos": [
+        8.43,
+        7.37,
+        5.45
+      ]
+    },
+    {
+      "name": "face_unlock",
+      "description": "a platform where you can use it for unlock a website or anything by giving command",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/face_unlock",
+      "cluster": "vision",
+      "pos": [
+        0.38,
+        11.37,
+        -2.49
+      ]
+    },
+    {
+      "name": "air_draw",
+      "description": "a platform where you can draw on air",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/air_draw",
+      "cluster": "vision",
+      "pos": [
+        2.36,
+        8.17,
+        -1.49
+      ]
+    },
+    {
+      "name": "s2-student-portal-heroku",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/s2-student-portal-heroku",
+      "cluster": "campus",
+      "pos": [
+        12.01,
+        7.02,
+        5.39
+      ]
+    },
+    {
+      "name": "srm-ai-study-hub",
+      "description": "AI-powered study hub for SRM students with subject-wise materials, PYQs, and AI assistant for doubt solving",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srm-ai-study-hub",
+      "cluster": "ai",
+      "pos": [
+        -9.2,
+        1.55,
+        5.92
+      ]
+    },
+    {
+      "name": "academia-nexus",
+      "description": "\u00f0\u0178\u0161\u20ac A futuristic, interactive dashboard for SRM Academia with 3D elements, real-time analytics, and creative visualizations. Built with Next.js, Three.js, and Framer Motion.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/academia-nexus",
+      "cluster": "campus",
+      "pos": [
+        13.29,
+        4.41,
+        5.28
+      ]
+    },
+    {
+      "name": "srm-academia-data-collector",
+      "description": "Python script to collect academic data from SRM Academia using Vcademia API. Exports student details, attendance, marks, courses, and timetable to CSV, JSON, and Excel formats.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/srm-academia-data-collector",
+      "cluster": "campus",
+      "pos": [
+        12.37,
+        1.58,
+        6.7
+      ]
+    },
+    {
+      "name": "neon-globe",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/neon-globe",
+      "cluster": "vision",
+      "pos": [
+        -1.23,
+        7.49,
+        -0.54
+      ]
+    },
+    {
+      "name": "SRM-portal",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "TypeScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/SRM-portal",
+      "cluster": "campus",
+      "pos": [
+        9.54,
+        3.16,
+        6.48
+      ]
+    },
+    {
+      "name": "festival-website",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/festival-website",
+      "cluster": "apps",
+      "pos": [
+        -2.76,
+        -9.93,
+        -1.44
+      ]
+    },
+    {
+      "name": "SRM-Student-Portal",
+      "description": "Pro-level SRM student portal with login, dashboard, marks, attendance, resources, AI assistant integration, and creative UI/animations. For collaborative frontend/back-end development. For queries, contact: 9866707883",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/SRM-Student-Portal",
+      "cluster": "campus",
+      "pos": [
+        11.0,
+        4.0,
+        6.99
+      ]
+    },
+    {
+      "name": "boost-up",
+      "description": "A platform for uploading and sharing educational materials, notes, exam papers, PYQs, attendance, and marks",
+      "language": "JavaScript",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/boost-up",
+      "cluster": "apps",
+      "pos": [
+        -3.92,
+        -7.05,
+        -0.85
+      ]
+    },
+    {
+      "name": "poster",
+      "description": "craeting poster for tech innovate",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/poster",
+      "cluster": "apps",
+      "pos": [
+        -1.35,
+        -5.4,
+        -1.29
+      ]
+    },
+    {
+      "name": "robocon_template",
+      "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/robocon_template",
+      "cluster": "vision",
+      "pos": [
+        0.0,
+        9.0,
+        0.62
+      ]
+    },
+    {
+      "name": "sai",
+      "description": "creating a template for robocon",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/sai",
+      "cluster": "ai",
+      "pos": [
+        -12.48,
+        3.02,
+        5.81
+      ]
+    },
+    {
+      "name": "Vss-ai",
+      "description": "Newly frontend developer ",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/Vss-ai",
+      "cluster": "ai",
+      "pos": [
+        -11.0,
+        4.0,
+        6.5
+      ]
+    },
+    {
+      "name": "Flowers-encyclopedia-",
+      "description": "Newly frontend developer ",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/Flowers-encyclopedia-",
+      "cluster": "apps",
+      "pos": [
+        1.11,
+        -4.74,
+        -0.44
+      ]
+    },
+    {
+      "name": "flowerscyclopedia",
+      "description": "becoming a front end developer",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/flowerscyclopedia",
+      "cluster": "apps",
+      "pos": [
+        2.95,
+        -7.1,
+        0.26
+      ]
+    },
+    {
+      "name": "floweresncyclopedia",
+      "description": "becoming a front end developer",
+      "language": "Code",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/floweresncyclopedia",
+      "cluster": "apps",
+      "pos": [
+        1.01,
+        -9.42,
+        0.18
+      ]
+    },
+    {
+      "name": "flowerencyclopedia",
+      "description": "becoming a front end developer",
+      "language": "HTML",
+      "stars": 0,
+      "url": "https://github.com/siddharth-1118/flowerencyclopedia",
+      "cluster": "apps",
+      "pos": [
+        -1.69,
+        -8.44,
+        1.33
+      ]
+    },
+    {
+      "name": "Vss",
+      "description": "Newly frontend developer ",
+      "language": "Code",
+      "stars": 1,
+      "url": "https://github.com/siddharth-1118/Vss",
+      "cluster": "apps",
+      "pos": [
+        0.0,
+        -7.5,
+        1.56
+      ]
+    }
+  ]
+}

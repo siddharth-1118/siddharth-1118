@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sai Siddharth | 3D Spatial Universe & Repository Constellation</title>
-    <meta name="description" content="Immersive 3D portfolio universe of Vooka Sai Siddharth. Central 3D avatar radiating synaptic energy lines to all open-source repositories and AI architectures.">
+    <title>Sai Siddharth | 3D Neural Repository Universe</title>
+    <meta name="description" content="Full 3D Neural Network Universe of Vooka Sai Siddharth. 3D Character in the center connected via synaptic take-lines to all 83+ open-source repositories.">
     
-    <!-- Open Graph & Social Meta -->
-    <meta property="og:title" content="Sai Siddharth | 3D Spatial Universe">
-    <meta property="og:description" content="Explore an interactive 3D universe featuring Sai Siddharth's AI operating systems, computer vision suites, and 85+ open-source repositories.">
+    <!-- Open Graph & Social -->
+    <meta property="og:title" content="Sai Siddharth | 3D Neural Repository Universe">
+    <meta property="og:description" content="Interactive 3D neural brain connecting Sai Siddharth to 83+ open-source repositories and AI architectures.">
     <meta property="og:image" content="assets/profile.jpg">
     <meta property="og:type" content="website">
 
@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Tailwind CSS -->
@@ -57,124 +57,52 @@
         }
     </script>
 
-    <!-- Three.js & OrbitControls -->
+    <!-- Three.js, Controls & TWEEN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <!-- TWEEN for smooth camera flyover animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
 
     <style>
-        * {
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-user-select: none;
-        }
+        * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #030306; color: #e2e8f0; font-family: 'Space Grotesk', sans-serif; }
+        #canvas3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 1; cursor: grab; }
+        #canvas3d:active { cursor: grabbing; }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #030306;
-            color: #e2e8f0;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        #canvas3d {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            z-index: 1;
-            cursor: grab;
-        }
-
-        #canvas3d:active {
-            cursor: grabbing;
-        }
-
-        /* Cinematic Film Grain Overlay */
         .film-grain {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 2;
-            opacity: 0.035;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 2; opacity: 0.035;
             background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
         }
 
-        /* Glassmorphism styling */
         .glass-panel {
-            background: rgba(7, 7, 13, 0.75);
+            background: rgba(7, 7, 13, 0.82);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
         }
 
-        .glass-panel-accent {
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+        .cursor-target {
+            pointer-events: none; position: fixed; width: 34px; height: 34px;
+            border: 1.5px dashed rgba(6, 182, 212, 0.6); border-radius: 50%;
+            transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, opacity 0.2s;
+            z-index: 50; opacity: 0;
         }
+        .cursor-target.active { opacity: 1; width: 48px; height: 48px; border-color: #a78bfa; }
 
-        /* Glow effects */
-        .text-glow {
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
-        }
-
-        .text-glow-cyan {
-            text-shadow: 0 0 15px rgba(6, 182, 212, 0.7);
-        }
-
-        /* Custom Scrollbar for Drawer */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #07070d; }
         ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 999px; }
-
-        /* Reticle crosshair on hover */
-        .cursor-target {
-            pointer-events: none;
-            position: fixed;
-            width: 32px;
-            height: 32px;
-            border: 1px dashed rgba(6, 182, 212, 0.6);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, opacity 0.2s;
-            z-index: 50;
-            opacity: 0;
-        }
-        .cursor-target.active {
-            opacity: 1;
-            width: 44px;
-            height: 44px;
-            border-color: #a78bfa;
-        }
-
-        /* Animations */
-        @keyframes radar-sweep {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .animate-radar {
-            animation: radar-sweep 6s linear infinite;
-        }
     </style>
 </head>
 <body class="relative w-full h-full">
 
-    <!-- 3D Canvas & Atmospheric Overlays -->
+    <!-- 3D Canvas & Overlays -->
     <canvas id="canvas3d"></canvas>
     <div class="film-grain"></div>
     <div id="reticle" class="cursor-target"></div>
 
     <!-- Top Navigation HUD -->
     <header class="fixed top-0 left-0 right-0 z-30 px-6 py-4 flex justify-between items-center pointer-events-none">
-        
-        <!-- Identity Monogram -->
         <div class="flex items-center space-x-3 pointer-events-auto">
             <div onclick="flyToTarget('architect')" class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-cyber-cyan p-[1.5px] cursor-pointer shadow-lg shadow-brand-500/25 hover:scale-105 transition-all">
                 <div class="w-full h-full bg-dark-950 rounded-[14px] flex items-center justify-center font-display font-black text-white text-base">
@@ -188,23 +116,21 @@
                     <span class="w-2 h-2 rounded-full bg-cyber-emerald -ml-2"></span>
                 </h1>
                 <span class="text-[10px] font-mono tracking-widest text-brand-300/80 uppercase">
-                    3D World • Neural Core &amp; 85+ Repos
+                    3D Neural Brain • 83 Repos Connected
                 </span>
             </div>
         </div>
 
-        <!-- Telemetry Stats & Audio FX -->
         <div class="flex items-center space-x-3 pointer-events-auto">
-            
             <div class="hidden md:flex items-center space-x-4 glass-panel px-4 py-2 rounded-xl text-xs font-mono">
                 <div class="flex items-center space-x-1.5 text-gray-300">
-                    <i class="fa-solid fa-circle-nodes text-brand-400"></i>
-                    <span>NODES: <strong id="hud-node-count" class="text-white">85</strong></span>
+                    <i class="fa-solid fa-network-wired text-brand-400"></i>
+                    <span>NEURAL SYNAPSES: <strong class="text-white">83 NODES</strong></span>
                 </div>
                 <div class="w-px h-3 bg-white/20"></div>
                 <div class="flex items-center space-x-1.5 text-gray-300">
                     <i class="fa-solid fa-bolt text-cyber-cyan"></i>
-                    <span>FPS: <strong id="hud-fps" class="text-cyber-emerald">60</strong></span>
+                    <span>RENDER: <strong class="text-cyber-emerald">60 FPS</strong></span>
                 </div>
             </div>
 
@@ -213,13 +139,13 @@
                 <i class="fa-solid fa-volume-high" id="audio-icon"></i>
             </button>
 
-            <!-- Reset Camera View Button -->
-            <button onclick="flyToTarget('overview')" class="glass-panel px-3.5 py-2 rounded-xl flex items-center space-x-2 text-xs font-mono text-gray-300 hover:text-white hover:border-brand-500 transition-all" title="Return to Overview Orbit">
+            <!-- Overview Button -->
+            <button onclick="flyToTarget('overview')" class="glass-panel px-3.5 py-2 rounded-xl flex items-center space-x-2 text-xs font-mono text-gray-300 hover:text-white hover:border-brand-500 transition-all" title="Return to Full Overview">
                 <i class="fa-solid fa-compass text-brand-400"></i>
                 <span class="hidden sm:inline">Overview</span>
             </button>
 
-            <!-- GitHub Profile Direct Link -->
+            <!-- GitHub Link -->
             <a href="https://github.com/siddharth-1118" target="_blank" rel="noopener noreferrer" class="glass-panel px-3.5 py-2 rounded-xl flex items-center space-x-2 text-xs font-mono text-brand-300 hover:text-white hover:bg-brand-600/20 hover:border-brand-400 transition-all">
                 <i class="fa-brands fa-github text-sm"></i>
                 <span class="hidden sm:inline">GitHub</span>
@@ -227,146 +153,130 @@
         </div>
     </header>
 
-    <!-- Bottom Camera Navigation Deck -->
-    <nav class="fixed bottom-5 left-1/2 -translate-x-1/2 z-30 max-w-[94vw] pointer-events-auto">
-        <div class="glass-panel px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full border border-white/10 shadow-2xl">
-            
-            <button onclick="flyToTarget('architect')" id="btn-architect" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-white font-bold bg-brand-600 border border-brand-400 flex items-center space-x-1.5 whitespace-nowrap shadow-md shadow-brand-500/30 transition-all">
-                <i class="fa-solid fa-user-astronaut text-xs"></i>
-                <span>Siddharth (3D)</span>
-            </button>
-
-            <button onclick="flyToTarget('vss-agent')" id="btn-vss-agent" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
-                <i class="fa-solid fa-brain text-brand-400 text-xs"></i>
-                <span>VSS Agent</span>
-            </button>
-
-            <button onclick="flyToTarget('academia')" id="btn-academia" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
-                <i class="fa-solid fa-graduation-cap text-cyber-cyan text-xs"></i>
-                <span>SRM Academia</span>
-            </button>
-
-            <button onclick="flyToTarget('signal')" id="btn-signal" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
-                <i class="fa-solid fa-signal text-cyber-pink text-xs"></i>
-                <span>SIGNAL OS</span>
-            </button>
-
-            <button onclick="flyToTarget('vision')" id="btn-vision" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
-                <i class="fa-solid fa-eye text-cyber-emerald text-xs"></i>
-                <span>Vision Suite</span>
-            </button>
-
-            <button onclick="flyToTarget('creatorlang')" id="btn-creatorlang" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
-                <i class="fa-solid fa-code text-cyber-amber text-xs"></i>
-                <span>Creatorlang</span>
-            </button>
-
-            <button onclick="flyToTarget('galaxy')" id="btn-galaxy" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
-                <i class="fa-solid fa-cubes-stacked text-cyber-blue text-xs"></i>
-                <span>85+ Repos Belt</span>
-            </button>
-
-        </div>
-    </nav>
-
-    <!-- Floating 3D Interaction Guide Pill -->
-    <div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-20 pointer-events-none opacity-80 transition-opacity duration-500" id="interaction-hint">
-        <div class="glass-panel px-4 py-1.5 rounded-full text-[11px] font-mono tracking-widest uppercase text-gray-300 flex items-center space-x-2 border border-white/10">
-            <i class="fa-solid fa-hand-pointer text-brand-400"></i>
-            <span>Drag to Orbit • Scroll to Zoom • Click 3D Character or Repos to Inspect</span>
-        </div>
-    </div>
-
-    <!-- Instant Search & Quick Finder Overlay (Top Right) -->
+    <!-- Top Right: Instant 3D Node Search & Filter -->
     <div class="fixed top-20 right-6 z-30 w-72 pointer-events-auto">
         <div class="glass-panel p-2 rounded-2xl border border-white/10 shadow-2xl">
             <div class="relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-                <input type="text" id="repo-search" oninput="handleSearch(this.value)" placeholder="Fly to repo (e.g. skedio, vision)..." class="w-full bg-dark-950/80 rounded-xl pl-8 pr-3 py-1.5 text-xs font-mono text-white placeholder-gray-500 border border-white/5 focus:outline-none focus:border-brand-500 transition-all">
+                <input type="text" id="repo-search" oninput="handleSearch(this.value)" placeholder="Search 83 neurons (e.g. agent, skedio)..." class="w-full bg-dark-950/80 rounded-xl pl-8 pr-3 py-1.5 text-xs font-mono text-white placeholder-gray-500 border border-white/5 focus:outline-none focus:border-brand-500 transition-all">
             </div>
-            <!-- Search Results Dropdown -->
-            <div id="search-dropdown" class="hidden mt-2 max-h-48 overflow-y-auto space-y-1 font-mono text-xs"></div>
+            <div id="search-dropdown" class="hidden mt-2 max-h-52 overflow-y-auto space-y-1 font-mono text-xs"></div>
         </div>
     </div>
 
+    <!-- Floating 3D Interaction Guide Pill -->
+    <div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-20 pointer-events-none opacity-80" id="interaction-hint">
+        <div class="glass-panel px-4 py-1.5 rounded-full text-[11px] font-mono tracking-widest uppercase text-gray-300 flex items-center space-x-2 border border-white/10">
+            <i class="fa-solid fa-hand-pointer text-brand-400"></i>
+            <span>Drag to Orbit • Scroll to Zoom • Click any 3D Neuron or Siddharth to Inspect</span>
+        </div>
+    </div>
+
+    <!-- Bottom Neural Lobe Camera Presets -->
+    <nav class="fixed bottom-5 left-1/2 -translate-x-1/2 z-30 max-w-[96vw] pointer-events-auto">
+        <div class="glass-panel px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full border border-white/10 shadow-2xl">
+            <button onclick="flyToTarget('architect')" id="btn-architect" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-white font-bold bg-brand-600 border border-brand-400 flex items-center space-x-1.5 whitespace-nowrap shadow-md shadow-brand-500/30 transition-all">
+                <i class="fa-solid fa-user-astronaut text-xs"></i>
+                <span>Siddharth (Center)</span>
+            </button>
+            <button onclick="flyToCluster('ai')" id="btn-ai" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
+                <i class="fa-solid fa-brain text-brand-400 text-xs"></i>
+                <span>AI & Models (20)</span>
+            </button>
+            <button onclick="flyToCluster('campus')" id="btn-campus" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
+                <i class="fa-solid fa-graduation-cap text-cyber-cyan text-xs"></i>
+                <span>Campus Portals (19)</span>
+            </button>
+            <button onclick="flyToCluster('vision')" id="btn-vision" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
+                <i class="fa-solid fa-eye text-cyber-emerald text-xs"></i>
+                <span>Vision & Gestures (7)</span>
+            </button>
+            <button onclick="flyToCluster('languages')" id="btn-languages" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
+                <i class="fa-solid fa-code text-cyber-amber text-xs"></i>
+                <span>Compilers & DSLs (5)</span>
+            </button>
+            <button onclick="flyToCluster('systems')" id="btn-systems" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
+                <i class="fa-solid fa-comments text-cyber-pink text-xs"></i>
+                <span>Chat & OS (11)</span>
+            </button>
+            <button onclick="flyToCluster('apps')" id="btn-apps" class="cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all">
+                <i class="fa-solid fa-cubes text-cyber-blue text-xs"></i>
+                <span>Web & Creative (20)</span>
+            </button>
+        </div>
+    </nav>
+
     <!-- 3D Node Holographic Detail Inspector Drawer -->
-    <aside id="detail-drawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[460px] z-40 bg-dark-950/90 backdrop-blur-2xl border-l border-white/10 p-6 flex flex-col justify-between transition-transform duration-500 translate-x-full shadow-2xl overflow-y-auto">
-        
+    <aside id="detail-drawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[460px] z-40 bg-dark-950/95 backdrop-blur-2xl border-l border-white/10 p-6 flex flex-col justify-between transition-transform duration-500 translate-x-full shadow-2xl overflow-y-auto">
         <div>
-            <!-- Header bar with close button -->
             <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
                 <div class="flex items-center space-x-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-cyber-cyan animate-pulse"></span>
-                    <span id="drawer-tag" class="text-xs font-mono text-cyber-cyan tracking-widest uppercase font-bold">SYSTEM TELEMETRY</span>
+                    <span id="drawer-dot" class="w-2.5 h-2.5 rounded-full bg-cyber-cyan animate-pulse"></span>
+                    <span id="drawer-tag" class="text-xs font-mono text-cyber-cyan tracking-widest uppercase font-bold">NEURAL NODE TELEMETRY</span>
                 </div>
                 <button onclick="closeDetailDrawer()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <!-- Visual Media Container -->
-            <div id="drawer-media-box" class="w-full rounded-2xl overflow-hidden aspect-[16/9] bg-dark-900 border border-white/10 mb-6 relative group shadow-xl">
-                <img id="drawer-img" src="assets/vss-agent-arch.svg" alt="Project Architecture Preview" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-60"></div>
-                <span id="drawer-media-caption" class="absolute bottom-2 left-3 text-[10px] font-mono text-gray-300">FIGURE // SYSTEM ARCHITECTURE</span>
+            <!-- Visual Preview Container -->
+            <div id="drawer-media-box" class="w-full rounded-2xl overflow-hidden aspect-[16/9] bg-dark-900 border border-white/10 mb-6 relative group shadow-xl flex items-center justify-center">
+                <img id="drawer-img" src="assets/vss-agent-arch.svg" alt="Repository Schematic Preview" class="w-full h-full object-contain p-2">
+                <span id="drawer-media-caption" class="absolute bottom-2 left-3 text-[10px] font-mono text-gray-300">SYSTEM SCHEMATIC // VSS CORE</span>
             </div>
 
-            <!-- Title & Subtitle -->
-            <h2 id="drawer-title" class="font-display font-black text-2xl text-white tracking-tight mb-2">
+            <!-- Title & Badges -->
+            <h2 id="drawer-title" class="font-display font-black text-2xl text-white tracking-tight mb-2 break-all">
                 vss-self-deciding-agent
             </h2>
             <div id="drawer-badges" class="flex flex-wrap gap-2 mb-4 font-mono text-xs">
-                <span class="px-2.5 py-0.5 rounded-md bg-brand-500/20 text-brand-300 border border-brand-500/30">Python / PyTorch</span>
-                <span class="px-2.5 py-0.5 rounded-md bg-white/5 text-gray-300 border border-white/10">Zero Wrapper</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-brand-500/20 text-brand-300 border border-brand-500/30">Python</span>
             </div>
 
             <!-- Description -->
             <p id="drawer-desc" class="text-gray-300 text-sm font-light leading-relaxed mb-6">
-                System-One decision intelligence model built from scratch in PyTorch — answers all typed questions in a single forward pass with calibrated confidence and zero external LLM dependencies.
+                System-One decision intelligence model built from scratch in PyTorch.
             </p>
 
-            <!-- Technical Highlights -->
+            <!-- Metadata Box -->
             <div class="glass-panel p-4 rounded-xl border border-white/5 mb-6 space-y-2 text-xs font-mono">
                 <div class="flex justify-between text-gray-400">
-                    <span>Engineered By:</span>
+                    <span>Architect:</span>
                     <span class="text-white font-bold">Vooka Sai Siddharth</span>
                 </div>
                 <div class="flex justify-between text-gray-400">
-                    <span>Ecosystem:</span>
-                    <span id="drawer-eco" class="text-brand-300">VSS Core Framework</span>
+                    <span>Neural Lobe:</span>
+                    <span id="drawer-cluster-name" class="text-brand-300">AI & Deep Learning</span>
                 </div>
                 <div class="flex justify-between text-gray-400">
-                    <span>Status:</span>
-                    <span class="text-cyber-emerald font-bold">● Active &amp; Verified</span>
+                    <span>Synapse Status:</span>
+                    <span class="text-cyber-emerald font-bold">● Online &amp; Open Source</span>
                 </div>
             </div>
         </div>
 
-        <!-- Action Buttons -->
         <div class="pt-4 border-t border-white/10 space-y-3">
-            <a id="drawer-github-link" href="https://github.com/siddharth-1118/vss-self-deciding-agent" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-mono text-xs font-bold tracking-widest uppercase flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/30 transition-all">
+            <a id="drawer-github-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-mono text-xs font-bold tracking-widest uppercase flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/30 transition-all">
                 <i class="fa-brands fa-github text-sm"></i>
-                <span>Inspect Repository on GitHub</span>
+                <span>Open Repository on GitHub</span>
             </a>
-            
             <button id="drawer-clone-btn" onclick="copyDrawerCloneUrl(this)" class="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white font-mono text-xs flex items-center justify-center space-x-2 transition-all">
                 <i class="fa-regular fa-clone"></i>
                 <span id="drawer-clone-text">Copy git clone command</span>
             </button>
         </div>
-
     </aside>
 
-    <!-- Main 3D Engine Script -->
+    <!-- Embedded 3D Neural Graph Data & Three.js Engine -->
     <script>
-        // --- Web Audio API UI Sound Synthesizer ---
+        const NEURAL_GRAPH = {"clusters": {"ai": {"name": "AI & Deep Learning", "color": 9133302, "hex": "#8b5cf6", "center": [-11, 4, 3], "radius": 4.5}, "campus": {"name": "Campus Portals & Academics", "color": 440020, "hex": "#06b6d4", "center": [11, 4, 3], "radius": 4.8}, "vision": {"name": "Perception & Computer Vision", "color": 1096065, "hex": "#10b981", "center": [0, 9, -2], "radius": 3.6}, "languages": {"name": "Compilers & Domain Languages", "color": 16096779, "hex": "#f59e0b", "center": [-9, -4.5, 3], "radius": 3.5}, "systems": {"name": "Realtime Chat & System OS", "color": 15485081, "hex": "#ec4899", "center": [9, -4.5, 3], "radius": 4.0}, "apps": {"name": "Web Platforms & Creative Tools", "color": 3900150, "hex": "#3b82f6", "center": [0, -7.5, -3], "radius": 4.5}}, "nodes": [{"name": "placemnt-metrics", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/placemnt-metrics", "cluster": "campus", "pos": [11.0, 4.0, -1.45]}, {"name": "vss-office", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Go", "stars": 0, "url": "https://github.com/siddharth-1118/vss-office", "cluster": "systems", "pos": [9.0, -4.5, -1.04]}, {"name": "ground-truth", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/ground-truth", "cluster": "ai", "pos": [-11.0, 4.0, -0.46]}, {"name": "meet", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/meet", "cluster": "systems", "pos": [6.71, -4.08, -0.31]}, {"name": "krishi-vani", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/krishi-vani", "cluster": "systems", "pos": [9.75, -1.67, 0.59]}, {"name": "learn-vss", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/learn-vss", "cluster": "apps", "pos": [-0.0, -7.5, -6.84]}, {"name": "bluechat", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Dart", "stars": 1, "url": "https://github.com/siddharth-1118/bluechat", "cluster": "systems", "pos": [12.65, -4.59, 1.14]}, {"name": "srm-ai-hub", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Python", "stars": 0, "url": "https://github.com/siddharth-1118/srm-ai-hub", "cluster": "ai", "pos": [-11.3, 2.25, 0.18]}, {"name": "vss-self-deciding-agent", "description": "System-One decision intelligence model: answers all typed questions in a single inference pass with calibrated probabilities. Built from scratch in PyTorch.", "language": "Python", "stars": 0, "url": "https://github.com/siddharth-1118/vss-self-deciding-agent", "cluster": "ai", "pos": [-13.16, 4.48, 0.88]}, {"name": "WhistleDrop-Confidential-Reporting-System-Backend", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/WhistleDrop-Confidential-Reporting-System-Backend", "cluster": "apps", "pos": [0.13, -9.45, -7.37]}, {"name": "step-sem-3", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/step-sem-3", "cluster": "campus", "pos": [9.16, 4.25, -0.84]}, {"name": "tutedude-task1", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/tutedude-task1", "cluster": "apps", "pos": [-2.55, -7.73, -6.75]}, {"name": "vss-maps", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/vss-maps", "cluster": "systems", "pos": [10.19, -7.82, 2.0]}, {"name": "ReBite-AI", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/ReBite-AI", "cluster": "ai", "pos": [-11.17, 7.36, 0.85]}, {"name": "classivo3", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 1, "url": "https://github.com/siddharth-1118/classivo3", "cluster": "campus", "pos": [11.3, 6.33, -0.13]}, {"name": "fix-pilot", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/fix-pilot", "cluster": "apps", "pos": [-1.03, -5.33, -5.63]}, {"name": "Exam-Guard", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/Exam-Guard", "cluster": "campus", "pos": [14.06, 4.64, -0.07]}, {"name": "srminsider-admin-client", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/srminsider-admin-client", "cluster": "campus", "pos": [12.81, 1.88, 0.91]}, {"name": "srminsider-admin-server", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/srminsider-admin-server", "cluster": "campus", "pos": [9.88, -0.09, 0.55]}, {"name": "vss-language", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "C", "stars": 3, "url": "https://github.com/siddharth-1118/vss-language", "cluster": "languages", "pos": [-9.0, -4.5, -0.04]}, {"name": "Step_semester_3", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/Step_semester_3", "cluster": "campus", "pos": [7.66, 2.61, 1.42]}, {"name": "srm-api-wrapper", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/srm-api-wrapper", "cluster": "campus", "pos": [6.91, 6.1, 1.55]}, {"name": "material-sync", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Jupyter Notebook", "stars": 0, "url": "https://github.com/siddharth-1118/material-sync", "cluster": "apps", "pos": [1.97, -4.69, -5.96]}, {"name": "altitude-forms", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/altitude-forms", "cluster": "systems", "pos": [6.57, -6.9, 2.69]}, {"name": "altitude-mail", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/altitude-mail", "cluster": "ai", "pos": [-7.56, 5.74, 1.39]}, {"name": "altitude-drive", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/altitude-drive", "cluster": "systems", "pos": [4.94, -3.07, 3.39]}, {"name": "altitude-meet", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/altitude-meet", "cluster": "systems", "pos": [8.63, -0.64, 4.1]}, {"name": "campus-360", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/campus-360", "cluster": "campus", "pos": [9.73, 8.84, 1.98]}, {"name": "classivo", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 1, "url": "https://github.com/siddharth-1118/classivo", "cluster": "campus", "pos": [13.02, 7.18, 2.62]}, {"name": "yovix", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Code", "stars": 1, "url": "https://github.com/siddharth-1118/yovix", "cluster": "apps", "pos": [3.43, -7.48, -5.35]}, {"name": "avinya", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/avinya", "cluster": "apps", "pos": [2.13, -10.07, -4.82]}, {"name": "college-book", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/college-book", "cluster": "apps", "pos": [-0.61, -11.62, -4.77]}, {"name": "jugaad", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/jugaad", "cluster": "systems", "pos": [11.52, -3.24, 4.44]}, {"name": "Ai", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Jupyter Notebook", "stars": 0, "url": "https://github.com/siddharth-1118/Ai", "cluster": "ai", "pos": [-7.72, 1.74, 2.06]}, {"name": "vss-chat", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Kotlin", "stars": 0, "url": "https://github.com/siddharth-1118/vss-chat", "cluster": "systems", "pos": [10.9, -6.77, 5.45]}, {"name": "vss-chat-web", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/vss-chat-web", "cluster": "systems", "pos": [7.01, -5.92, 6.47]}, {"name": "kt-consulatnacies", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/kt-consulatnacies", "cluster": "apps", "pos": [-3.14, -9.73, -4.23]}, {"name": "stratify1", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Jupyter Notebook", "stars": 1, "url": "https://github.com/siddharth-1118/stratify1", "cluster": "ai", "pos": [-11.2, 1.0, 2.77]}, {"name": "stratify", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Jupyter Notebook", "stars": 0, "url": "https://github.com/siddharth-1118/stratify", "cluster": "ai", "pos": [-14.31, 2.27, 3.29]}, {"name": "java", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Java", "stars": 0, "url": "https://github.com/siddharth-1118/java", "cluster": "languages", "pos": [-10.29, -1.8, 1.27]}, {"name": "classivo-1", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/classivo-1", "cluster": "campus", "pos": [16.17, 5.01, 3.0]}, {"name": "amma-s-pantery", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/amma-s-pantery", "cluster": "apps", "pos": [-4.33, -6.78, -3.98]}, {"name": "ahu", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/ahu", "cluster": "apps", "pos": [-2.39, -4.28, -3.53]}, {"name": "punishment-website", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "CSS", "stars": 0, "url": "https://github.com/siddharth-1118/punishment-website", "cluster": "apps", "pos": [0.51, -3.3, -3.18]}, {"name": "hand-getures", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/hand-getures", "cluster": "vision", "pos": [0.0, 9.0, -5.26]}, {"name": "srm-insider", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/srm-insider", "cluster": "campus", "pos": [13.88, 1.94, 3.36]}, {"name": "axon-labs", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/axon-labs", "cluster": "apps", "pos": [3.56, -4.53, -2.8]}, {"name": "med-gemma", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/med-gemma", "cluster": "ai", "pos": [-14.52, 6.17, 3.98]}, {"name": "interview-simulation", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/interview-simulation", "cluster": "apps", "pos": [3.32, -7.71, -2.56]}, {"name": "ai-for-bahrat", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/ai-for-bahrat", "cluster": "ai", "pos": [-10.79, 7.85, 4.61]}, {"name": "maha-shivratri", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/maha-shivratri", "cluster": "apps", "pos": [3.23, -11.03, -1.94]}, {"name": "voice-analyzer", "description": "\"Your Personal AI Communication Assistant. An intelligent Android app that reads, summarizes, and auto-replies to WhatsApp and SMS messages. Features selective contact integration and automated call handling when you are busy or in DND mode.\"", "language": "CSS", "stars": 0, "url": "https://github.com/siddharth-1118/voice-analyzer", "cluster": "systems", "pos": [9.0, -4.5, 6.42]}, {"name": "skedio", "description": "Better way to manage your academics. A student portal for scheduling, attendance tracking, and academic performance prediction.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/skedio", "cluster": "campus", "pos": [11.57, -0.41, 3.91]}, {"name": "s2-class-portal", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/s2-class-portal", "cluster": "campus", "pos": [7.83, 0.32, 4.53]}, {"name": "vss-link", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/vss-link", "cluster": "apps", "pos": [-0.16, -11.3, -1.78]}, {"name": "vss-entertainments", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/vss-entertainments", "cluster": "ai", "pos": [-7.62, 5.29, 5.31]}, {"name": "vss-lang", "description": "VSS Programming Language - A Python-like language with Telugu-style English keywords", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/vss-lang", "cluster": "languages", "pos": [-5.58, -4.7, 3.0]}, {"name": "hand-gesture", "description": "a face gesture app same as iron man suit", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/hand-gesture", "cluster": "vision", "pos": [-2.17, 8.59, -3.65]}, {"name": "s2-student-portal", "description": "Student Portal for S2 Class - Timetable Management, Marks Upload, Attendance Tracking with AI-powered features", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/s2-student-portal", "cluster": "campus", "pos": [7.92, 4.03, 4.34]}, {"name": "creatorlang", "description": "A unified creative language to generate images, videos, and 3D models using simple, intuitive syntax. One language for all your creative content.", "language": "Python", "stars": 0, "url": "https://github.com/siddharth-1118/creatorlang", "cluster": "languages", "pos": [-10.31, -6.57, 4.42]}, {"name": "devlang", "description": "A simple, intuitive programming language designed for all developers - combines Python's simplicity with clear, readable syntax. Easy to learn, powerful to use.", "language": "Python", "stars": 0, "url": "https://github.com/siddharth-1118/devlang", "cluster": "languages", "pos": [-9.0, -4.5, 6.15]}, {"name": "s2-student-portal-render", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/s2-student-portal-render", "cluster": "campus", "pos": [8.43, 7.37, 5.45]}, {"name": "face_unlock", "description": "a platform where you can use it for unlock a website or anything by giving command", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/face_unlock", "cluster": "vision", "pos": [0.38, 11.37, -2.49]}, {"name": "air_draw", "description": "a platform where you can draw on air", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/air_draw", "cluster": "vision", "pos": [2.36, 8.17, -1.49]}, {"name": "s2-student-portal-heroku", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/s2-student-portal-heroku", "cluster": "campus", "pos": [12.01, 7.02, 5.39]}, {"name": "srm-ai-study-hub", "description": "AI-powered study hub for SRM students with subject-wise materials, PYQs, and AI assistant for doubt solving", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/srm-ai-study-hub", "cluster": "ai", "pos": [-9.2, 1.55, 5.92]}, {"name": "academia-nexus", "description": "\u00f0\u0178\u0161\u20ac A futuristic, interactive dashboard for SRM Academia with 3D elements, real-time analytics, and creative visualizations. Built with Next.js, Three.js, and Framer Motion.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/academia-nexus", "cluster": "campus", "pos": [13.29, 4.41, 5.28]}, {"name": "srm-academia-data-collector", "description": "Python script to collect academic data from SRM Academia using Vcademia API. Exports student details, attendance, marks, courses, and timetable to CSV, JSON, and Excel formats.", "language": "Python", "stars": 0, "url": "https://github.com/siddharth-1118/srm-academia-data-collector", "cluster": "campus", "pos": [12.37, 1.58, 6.7]}, {"name": "neon-globe", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/neon-globe", "cluster": "vision", "pos": [-1.23, 7.49, -0.54]}, {"name": "SRM-portal", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "TypeScript", "stars": 0, "url": "https://github.com/siddharth-1118/SRM-portal", "cluster": "campus", "pos": [9.54, 3.16, 6.48]}, {"name": "festival-website", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/festival-website", "cluster": "apps", "pos": [-2.76, -9.93, -1.44]}, {"name": "SRM-Student-Portal", "description": "Pro-level SRM student portal with login, dashboard, marks, attendance, resources, AI assistant integration, and creative UI/animations. For collaborative frontend/back-end development. For queries, contact: 9866707883", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/SRM-Student-Portal", "cluster": "campus", "pos": [11.0, 4.0, 6.99]}, {"name": "boost-up", "description": "A platform for uploading and sharing educational materials, notes, exam papers, PYQs, attendance, and marks", "language": "JavaScript", "stars": 0, "url": "https://github.com/siddharth-1118/boost-up", "cluster": "apps", "pos": [-3.92, -7.05, -0.85]}, {"name": "poster", "description": "craeting poster for tech innovate", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/poster", "cluster": "apps", "pos": [-1.35, -5.4, -1.29]}, {"name": "robocon_template", "description": "VSS open-source architecture module engineered by Vooka Sai Siddharth.", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/robocon_template", "cluster": "vision", "pos": [0.0, 9.0, 0.62]}, {"name": "sai", "description": "creating a template for robocon", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/sai", "cluster": "ai", "pos": [-12.48, 3.02, 5.81]}, {"name": "Vss-ai", "description": "Newly frontend developer ", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/Vss-ai", "cluster": "ai", "pos": [-11.0, 4.0, 6.5]}, {"name": "Flowers-encyclopedia-", "description": "Newly frontend developer ", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/Flowers-encyclopedia-", "cluster": "apps", "pos": [1.11, -4.74, -0.44]}, {"name": "flowerscyclopedia", "description": "becoming a front end developer", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/flowerscyclopedia", "cluster": "apps", "pos": [2.95, -7.1, 0.26]}, {"name": "floweresncyclopedia", "description": "becoming a front end developer", "language": "Code", "stars": 0, "url": "https://github.com/siddharth-1118/floweresncyclopedia", "cluster": "apps", "pos": [1.01, -9.42, 0.18]}, {"name": "flowerencyclopedia", "description": "becoming a front end developer", "language": "HTML", "stars": 0, "url": "https://github.com/siddharth-1118/flowerencyclopedia", "cluster": "apps", "pos": [-1.69, -8.44, 1.33]}, {"name": "Vss", "description": "Newly frontend developer ", "language": "Code", "stars": 1, "url": "https://github.com/siddharth-1118/Vss", "cluster": "apps", "pos": [0.0, -7.5, 1.56]}]};
+
+        // --- Web Audio Synthesizer ---
         let audioCtx = null;
         let soundEnabled = true;
 
         function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
 
         function playSound(freq = 600, duration = 0.05, type = 'sine', vol = 0.04) {
@@ -405,147 +315,57 @@
             reticle.style.top = e.clientY + 'px';
         });
 
-        // --- Core 3D Variables ---
+        // --- Three.js Neural Scene Variables ---
         let scene, camera, renderer, controls;
         let characterGroup, headMesh, coreLight, daisRings = [];
-        let projectNodes = [];
-        let connectionLines = [];
-        let orbitalSatellites = [];
+        let allNeuronMeshes = [];
+        let allSynapseLines = [];
+        let actionPotentials = [];
+        let clusterHubMeshes = [];
         let raycaster = new THREE.Raycaster();
         let mouse = new THREE.Vector2(-100, -100);
-        let hoveredNode = null;
+        let hoveredNeuron = null;
         let clock = new THREE.Clock();
 
-        // Project Catalog with Rich Bespoke Assets
-        const featuredProjects = [
-            {
-                id: 'vss-agent',
-                name: 'vss-self-deciding-agent',
-                title: 'VSS Self-Deciding Agent',
-                tag: 'FLAGSHIP AI MODEL',
-                category: 'AI & Decision Intelligence',
-                tech: 'Python • PyTorch • Multi-Head Attention',
-                desc: 'A System-One decision intelligence model built natively in PyTorch. Answers all typed questions simultaneously in a single forward pass with calibrated probabilities and schema guarantees.',
-                img: 'assets/vss-agent-arch.svg',
-                url: 'https://github.com/siddharth-1118/vss-self-deciding-agent',
-                clone: 'https://github.com/siddharth-1118/vss-self-deciding-agent.git',
-                color: 0x8b5cf6, // Violet
-                pos: new THREE.Vector3(-9, 3.5, 4)
-            },
-            {
-                id: 'academia',
-                name: 'academia-nexus',
-                title: 'Academia Nexus 3D & Campus Suite',
-                tag: 'SPATIAL CAMPUS PORTAL',
-                category: '3D Web & Student Analytics',
-                tech: 'Next.js • Three.js • Python API',
-                desc: 'Futuristic 3D dashboard for SRM Academia featuring real-time attendance margin prediction dials, timetable scheduling, and interactive campus wireframe meshes. Accompanied by Classivo3 and Skedio with over 1,200 active student users.',
-                img: 'assets/academia-nexus.svg',
-                url: 'https://github.com/siddharth-1118/academia-nexus',
-                clone: 'https://github.com/siddharth-1118/academia-nexus.git',
-                color: 0x06b6d4, // Cyan
-                pos: new THREE.Vector3(9, 3.5, 4)
-            },
-            {
-                id: 'signal',
-                name: 'signal-ai-os',
-                title: 'SIGNAL — Priority AI Operating System',
-                tag: 'AI OS & DISPATCH KERNEL',
-                category: 'Distributed Systems & Event Streams',
-                tech: 'Distributed Kernel • Concurrency • Real-Time Scoring',
-                desc: 'High-throughput backend architecture that ingests, scores, and prioritizes communications across heterogeneous channels in real time with an automated synthetic agent dispatcher.',
-                img: 'assets/signal-os.svg',
-                url: 'https://github.com/siddharth-1118',
-                clone: 'https://github.com/siddharth-1118/siddharth-1118.git',
-                color: 0xec4899, // Pink
-                pos: new THREE.Vector3(8, 7, -5)
-            },
-            {
-                id: 'vision',
-                name: 'hand-gesture',
-                title: 'Computer Vision Interaction Suite',
-                tag: 'SPATIAL PERCEPTION & BIOMETRICS',
-                category: 'Computer Vision & Real-time Tracking',
-                tech: 'OpenCV • MediaPipe • 21 Landmarks',
-                desc: 'Iron Man-style camera tracking suite comprising Hand-Gesture (21 skeletal joint tracking), Air-Draw (pinch depth drawing canvas), and Face-Unlock (biometric authorization).',
-                img: 'assets/vision-suite.svg',
-                url: 'https://github.com/siddharth-1118/hand-gesture',
-                clone: 'https://github.com/siddharth-1118/hand-gesture.git',
-                color: 0x10b981, // Emerald
-                pos: new THREE.Vector3(-8, 7, -5)
-            },
-            {
-                id: 'creatorlang',
-                name: 'creatorlang',
-                title: 'Creatorlang & VSS-Lang Compiler Labs',
-                tag: 'COMPILERS & DOMAIN LANGUAGES',
-                category: 'Syntax Trees & AST Compilers',
-                tech: 'Custom Parser • AST • Telugu-English Grammar',
-                desc: 'Creatorlang compiles declarative text into 3D models and video shaders. VSS-Lang is an experimental programming language pairing Telugu-style English keywords with an optimized syntax interpreter.',
-                img: 'assets/creatorlang.svg',
-                url: 'https://github.com/siddharth-1118/creatorlang',
-                clone: 'https://github.com/siddharth-1118/creatorlang.git',
-                color: 0xf59e0b, // Amber
-                pos: new THREE.Vector3(-8, -4, 3)
-            },
-            {
-                id: 'classivo-skedio',
-                name: 'classivo3',
-                title: 'Classivo3 & Skedio Academic Suite',
-                tag: 'PRODUCTION COMPANION',
-                category: 'Campus Tools & Dynamic Guard',
-                tech: 'TypeScript • Next.js • SQLite • Kotlin',
-                desc: 'Companion suite for SRM students with real-time bunk safety calculation algorithms, marks tracking, and automated schedule synchronization.',
-                img: 'assets/classivo-skedio.svg',
-                url: 'https://github.com/siddharth-1118/classivo3',
-                clone: 'https://github.com/siddharth-1118/classivo3.git',
-                color: 0x3b82f6, // Blue
-                pos: new THREE.Vector3(8, -4, 3)
-            }
-        ];
-
-        // --- Initialize Full-Screen 3D Scene ---
         function initScene() {
             const canvas = document.getElementById('canvas3d');
             renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.1;
+            renderer.toneMappingExposure = 1.15;
 
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0x030306);
-            scene.fog = new THREE.FogExp2(0x030306, 0.015);
+            scene.fog = new THREE.FogExp2(0x030306, 0.012);
 
             camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 3, 16);
+            camera.position.set(0, 4, 22);
 
             controls = new THREE.OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
-            controls.maxDistance = 45;
-            controls.minDistance = 3;
+            controls.maxDistance = 55;
+            controls.minDistance = 3.5;
             controls.target.set(0, 1.2, 0);
 
-            // Lighting Setup
-            const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+            // Lighting
+            const ambient = new THREE.AmbientLight(0xffffff, 0.7);
             scene.add(ambient);
 
-            const sunLight = new THREE.DirectionalLight(0xa78bfa, 1.4);
-            sunLight.position.set(10, 20, 15);
-            scene.add(sunLight);
+            const sun = new THREE.DirectionalLight(0xa78bfa, 1.5);
+            sun.position.set(12, 25, 18);
+            scene.add(sun);
 
-            const rimLight = new THREE.DirectionalLight(0x06b6d4, 1.2);
-            rimLight.position.set(-15, -10, -10);
-            scene.add(rimLight);
+            const rim = new THREE.DirectionalLight(0x06b6d4, 1.2);
+            rim.position.set(-18, -12, -12);
+            scene.add(rim);
 
-            // Build Universe Components
-            buildBackgroundCosmos();
+            // Build Components
+            buildBackgroundStars();
             buildCentralArchitect();
-            buildProjectNodesAndLines();
-            buildOrbitalRepoBelt();
+            buildNeuralNetworkWorld();
 
-            // Event Listeners
             window.addEventListener('resize', onWindowResize);
             window.addEventListener('pointermove', onPointerMove);
             window.addEventListener('click', onClick);
@@ -553,10 +373,9 @@
             animate();
         }
 
-        // --- 1. Background Celestial Cosmos & Cyber Grid ---
-        function buildBackgroundCosmos() {
-            // Starfield particle cloud
-            const starCount = 1800;
+        // --- Background Celestial Stars ---
+        function buildBackgroundStars() {
+            const starCount = 2000;
             const starGeom = new THREE.BufferGeometry();
             const starPos = new Float32Array(starCount * 3);
             const starColors = new Float32Array(starCount * 3);
@@ -565,16 +384,16 @@
             const cCyan = new THREE.Color(0x06b6d4);
             const cWhite = new THREE.Color(0xffffff);
 
-            for(let i=0; i<starCount*3; i+=3) {
-                starPos[i] = (Math.random() - 0.5) * 200;
-                starPos[i+1] = (Math.random() - 0.5) * 200;
-                starPos[i+2] = (Math.random() - 0.5) * 200;
+            for (let i = 0; i < starCount * 3; i += 3) {
+                starPos[i] = (Math.random() - 0.5) * 260;
+                starPos[i + 1] = (Math.random() - 0.5) * 260;
+                starPos[i + 2] = (Math.random() - 0.5) * 260;
 
                 const r = Math.random();
                 const col = r > 0.6 ? cViolet : r > 0.3 ? cCyan : cWhite;
                 starColors[i] = col.r;
-                starColors[i+1] = col.g;
-                starColors[i+2] = col.b;
+                starColors[i + 1] = col.g;
+                starColors[i + 2] = col.b;
             }
 
             starGeom.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
@@ -584,490 +403,437 @@
                 size: 1.5,
                 vertexColors: true,
                 transparent: true,
-                opacity: 0.75,
+                opacity: 0.7,
                 blending: THREE.AdditiveBlending
             });
 
-            const starField = new THREE.Points(starGeom, starMat);
-            scene.add(starField);
+            scene.add(new THREE.Points(starGeom, starMat));
 
-            // Infinite Ground Cyber Grid
-            const gridHelper = new THREE.GridHelper(80, 50, 0x8b5cf6, 0x1e1b4b);
-            gridHelper.position.y = -2.8;
-            gridHelper.material.transparent = true;
-            gridHelper.material.opacity = 0.25;
-            scene.add(gridHelper);
+            const grid = new THREE.GridHelper(100, 60, 0x8b5cf6, 0x1e1b4b);
+            grid.position.y = -4.5;
+            grid.material.transparent = true;
+            grid.material.opacity = 0.2;
+            scene.add(grid);
         }
 
-        // --- 2. Central 3D Character of Sai Siddharth ---
+        // --- Central 3D Character of Sai Siddharth ---
         function buildCentralArchitect() {
             characterGroup = new THREE.Group();
-            characterGroup.position.set(0, 0, 0);
 
-            // A. Levitating Cybernetic Pedestal Base
-            const daisGeom = new THREE.CylinderGeometry(2.4, 2.8, 0.4, 32);
-            const daisMat = new THREE.MeshStandardMaterial({
-                color: 0x070712,
-                roughness: 0.2,
-                metalness: 0.9,
-                wireframe: false
-            });
-            const daisMesh = new THREE.Mesh(daisGeom, daisMat);
-            daisMesh.position.y = -2.6;
-            characterGroup.add(daisMesh);
+            // Pedestal Dais
+            const daisGeom = new THREE.CylinderGeometry(2.2, 2.6, 0.4, 32);
+            const daisMat = new THREE.MeshStandardMaterial({ color: 0x070712, roughness: 0.2, metalness: 0.9 });
+            const dais = new THREE.Mesh(daisGeom, daisMat);
+            dais.position.y = -2.6;
+            characterGroup.add(dais);
 
-            // Concentric glowing rings on pedestal
-            for(let i=1; i<=3; i++) {
-                const ringGeom = new THREE.TorusGeometry(1.4 + i*0.4, 0.02, 16, 64);
-                const ringMat = new THREE.MeshBasicMaterial({
-                    color: i%2 === 0 ? 0x06b6d4 : 0x8b5cf6,
-                    transparent: true,
-                    opacity: 0.8
-                });
+            for (let i = 1; i <= 3; i++) {
+                const ringGeom = new THREE.TorusGeometry(1.3 + i * 0.4, 0.02, 16, 64);
+                const ringMat = new THREE.MeshBasicMaterial({ color: i % 2 === 0 ? 0x06b6d4 : 0x8b5cf6, transparent: true, opacity: 0.85 });
                 const ring = new THREE.Mesh(ringGeom, ringMat);
                 ring.rotation.x = Math.PI / 2;
-                ring.position.y = -2.38 + i*0.02;
+                ring.position.y = -2.38 + i * 0.02;
                 characterGroup.add(ring);
                 daisRings.push(ring);
             }
 
-            // Central Vertical Energy Column
-            const beamGeom = new THREE.CylinderGeometry(1.2, 1.2, 5, 32, 1, true);
-            const beamMat = new THREE.MeshBasicMaterial({
-                color: 0x8b5cf6,
-                transparent: true,
-                opacity: 0.1,
-                side: THREE.DoubleSide,
-                blending: THREE.AdditiveBlending
-            });
-            const beam = new THREE.Mesh(beamGeom, beamMat);
-            beam.position.y = 0;
-            characterGroup.add(beam);
-
-            // B. Stylized Cybernetic Avatar Torso
+            // Torso & Body
             const torsoGroup = new THREE.Group();
+            const darkCyberMat = new THREE.MeshStandardMaterial({ color: 0x0d0d1a, roughness: 0.3, metalness: 0.8 });
 
-            // Lower core / pelvis
-            const pelvisGeom = new THREE.CylinderGeometry(0.5, 0.35, 0.6, 8);
-            const darkCyberMat = new THREE.MeshStandardMaterial({
-                color: 0x0d0d1a,
-                roughness: 0.3,
-                metalness: 0.8
-            });
-            const pelvis = new THREE.Mesh(pelvisGeom, darkCyberMat);
-            pelvis.position.y = -0.7;
-            torsoGroup.add(pelvis);
+            const chest = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.1, 0.7), darkCyberMat);
+            chest.position.y = 0.2;
+            torsoGroup.add(chest);
 
-            // Chest / armored jacket
-            const chestGeom = new THREE.BoxGeometry(1.2, 1.1, 0.7);
-            const chestMesh = new THREE.Mesh(chestGeom, darkCyberMat);
-            chestMesh.position.y = 0.2;
-            torsoGroup.add(chestMesh);
-
-            // Glowing Arc Core Reactor in Center of Chest
-            const coreGeom = new THREE.OctahedronGeometry(0.22, 1);
-            const coreMat = new THREE.MeshStandardMaterial({
-                color: 0x06b6d4,
-                emissive: 0x06b6d4,
-                emissiveIntensity: 1.2,
-                wireframe: true
-            });
+            // Glowing Arc Core Reactor
+            const coreGeom = new THREE.OctahedronGeometry(0.24, 1);
+            const coreMat = new THREE.MeshStandardMaterial({ color: 0x06b6d4, emissive: 0x06b6d4, emissiveIntensity: 1.2, wireframe: true });
             const chestCore = new THREE.Mesh(coreGeom, coreMat);
             chestCore.position.set(0, 0.25, 0.38);
             torsoGroup.add(chestCore);
 
-            coreLight = new THREE.PointLight(0x8b5cf6, 2.5, 8);
+            coreLight = new THREE.PointLight(0x8b5cf6, 2.5, 9);
             coreLight.position.set(0, 0.25, 0.5);
             torsoGroup.add(coreLight);
 
-            // High-tech Shoulders & Arms in Conductor/Architect Gesture
-            const shoulderGeom = new THREE.SphereGeometry(0.25, 16, 16);
-            const shoulderL = new THREE.Mesh(shoulderGeom, darkCyberMat);
-            shoulderL.position.set(-0.8, 0.6, 0);
-            torsoGroup.add(shoulderL);
-
-            const shoulderR = new THREE.Mesh(shoulderGeom, darkCyberMat);
-            shoulderR.position.set(0.8, 0.6, 0);
-            torsoGroup.add(shoulderR);
-
-            // Left Arm extending forward-left
-            const armGeom = new THREE.CylinderGeometry(0.12, 0.1, 0.9, 12);
-            const armL = new THREE.Mesh(armGeom, darkCyberMat);
+            // Arms in Conductor pose
+            const armL = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.9, 12), darkCyberMat);
             armL.position.set(-1.1, 0.2, 0.3);
             armL.rotation.z = -Math.PI / 4;
             armL.rotation.x = Math.PI / 5;
             torsoGroup.add(armL);
 
-            // Right Arm extending forward-right
-            const armR = new THREE.Mesh(armGeom, darkCyberMat);
+            const armR = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.9, 12), darkCyberMat);
             armR.position.set(1.1, 0.2, 0.3);
             armR.rotation.z = Math.PI / 4;
             armR.rotation.x = Math.PI / 5;
             torsoGroup.add(armR);
 
-            // Hands with glowing palms (origin points for the 3D take lines!)
-            const palmGeom = new THREE.SphereGeometry(0.12, 12, 12);
-            const palmMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
-            const handL = new THREE.Mesh(palmGeom, palmMat);
+            const handMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4 });
+            const handL = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 12), handMat);
             handL.position.set(-1.45, -0.15, 0.55);
             torsoGroup.add(handL);
 
-            const handR = new THREE.Mesh(palmGeom, palmMat);
+            const handR = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 12), handMat);
             handR.position.set(1.45, -0.15, 0.55);
             torsoGroup.add(handR);
 
-            // C. Head / Face with Sai Siddharth's Actual Picture
+            // Head with Real Portrait Texture
             headMesh = new THREE.Group();
             headMesh.position.y = 1.35;
 
-            // Load Texture of Actual Portrait
-            const textureLoader = new THREE.TextureLoader();
-            textureLoader.load('assets/profile.jpg', (tex) => {
+            new THREE.TextureLoader().load('assets/profile.jpg', (tex) => {
                 tex.generateMipmaps = true;
-                tex.minFilter = THREE.LinearMipmapLinearFilter;
-
-                // Face Portrait Display Plane
-                const faceGeom = new THREE.PlaneGeometry(0.85, 0.85);
-                const faceMat = new THREE.MeshBasicMaterial({
-                    map: tex,
-                    side: THREE.FrontSide
-                });
-                const faceMesh = new THREE.Mesh(faceGeom, faceMat);
-                faceMesh.position.z = 0.41;
-                headMesh.add(faceMesh);
+                const face = new THREE.Mesh(
+                    new THREE.PlaneGeometry(0.85, 0.85),
+                    new THREE.MeshBasicMaterial({ map: tex, side: THREE.FrontSide })
+                );
+                face.position.z = 0.41;
+                headMesh.add(face);
             });
 
-            // Cybernetic Helmet Base / Head Shell
-            const headGeom = new THREE.BoxGeometry(0.9, 0.95, 0.8);
-            const headShell = new THREE.Mesh(headGeom, darkCyberMat);
+            const headShell = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.95, 0.8), darkCyberMat);
             headMesh.add(headShell);
 
-            // Glowing Neon Visor Rim Frame
-            const visorFrameGeom = new THREE.TorusGeometry(0.55, 0.025, 16, 32);
-            const visorMat = new THREE.MeshBasicMaterial({ color: 0x8b5cf6 });
-            const visor = new THREE.Mesh(visorFrameGeom, visorMat);
+            const visor = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.025, 16, 32), new THREE.MeshBasicMaterial({ color: 0x8b5cf6 }));
             visor.position.z = 0.42;
             headMesh.add(visor);
 
-            // Floating Holographic Identity Billboard over head
+            // Floating Nameplate
             const nameCanvas = document.createElement('canvas');
             nameCanvas.width = 512;
             nameCanvas.height = 128;
             const nctx = nameCanvas.getContext('2d');
-            nctx.fillStyle = 'rgba(7, 7, 13, 0.85)';
+            nctx.fillStyle = 'rgba(7, 7, 13, 0.88)';
             nctx.roundRect(10, 10, 492, 108, 20);
             nctx.fill();
             nctx.strokeStyle = '#8b5cf6';
             nctx.lineWidth = 4;
             nctx.stroke();
-
             nctx.fillStyle = '#ffffff';
             nctx.font = 'bold 36px sans-serif';
             nctx.textAlign = 'center';
             nctx.fillText('VOOKA SAI SIDDHARTH', 256, 56);
-
             nctx.fillStyle = '#06b6d4';
             nctx.font = 'bold 22px monospace';
-            nctx.fillText('SRM KTR CS • VSS CORE ARCHITECT', 256, 92);
+            nctx.fillText('SRM KTR CS • VSS NEURAL CORE', 256, 92);
 
-            const nameTex = new THREE.CanvasTexture(nameCanvas);
-            const namePlateGeom = new THREE.PlaneGeometry(2.4, 0.6);
-            const namePlateMat = new THREE.MeshBasicMaterial({
-                map: nameTex,
-                transparent: true,
-                side: THREE.DoubleSide
-            });
-            const namePlate = new THREE.Mesh(namePlateGeom, namePlateMat);
+            const namePlate = new THREE.Mesh(
+                new THREE.PlaneGeometry(2.4, 0.6),
+                new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(nameCanvas), transparent: true, side: THREE.DoubleSide })
+            );
             namePlate.position.y = 1.0;
             headMesh.add(namePlate);
 
             torsoGroup.add(headMesh);
             characterGroup.add(torsoGroup);
+
+            dais.userData = { isCharacter: true };
+            headShell.userData = { isCharacter: true };
+            allNeuronMeshes.push(dais, headShell);
+
             scene.add(characterGroup);
         }
 
-        // --- 3. 3D "Take Lines" and Radiating Project Nodes ---
-        function buildProjectNodesAndLines() {
-            const handOriginL = new THREE.Vector3(-1.45, -0.15, 0.55);
-            const handOriginR = new THREE.Vector3(1.45, -0.15, 0.55);
+        // --- Build Entire 3D Neural Network with all 82 Nodes & Synapses ---
+        function buildNeuralNetworkWorld() {
+            const handL = new THREE.Vector3(-1.45, -0.15, 0.55);
+            const handR = new THREE.Vector3(1.45, -0.15, 0.55);
 
-            featuredProjects.forEach((proj, idx) => {
-                const nodeGroup = new THREE.Group();
-                nodeGroup.position.copy(proj.pos);
+            const clusterHubs = {};
 
-                // A. Core Geometric Polyhedron
-                const polyGeom = new THREE.IcosahedronGeometry(0.7, 1);
-                const polyMat = new THREE.MeshStandardMaterial({
-                    color: proj.color,
-                    emissive: proj.color,
-                    emissiveIntensity: 0.5,
+            Object.entries(NEURAL_GRAPH.clusters).forEach(([catKey, cfg]) => {
+                const hubCenter = new THREE.Vector3(...cfg.center);
+
+                const hubGeom = new THREE.IcosahedronGeometry(0.8, 1);
+                const hubMat = new THREE.MeshStandardMaterial({
+                    color: cfg.color,
+                    emissive: cfg.color,
+                    emissiveIntensity: 0.6,
                     wireframe: true,
+                    roughness: 0.2
+                });
+                const hubMesh = new THREE.Mesh(hubGeom, hubMat);
+                hubMesh.position.copy(hubCenter);
+
+                const inner = new THREE.Mesh(new THREE.SphereGeometry(0.35, 16, 16), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+                hubMesh.add(inner);
+
+                const ring = new THREE.Mesh(
+                    new THREE.TorusGeometry(1.2, 0.02, 16, 48),
+                    new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: 0.7 })
+                );
+                hubMesh.add(ring);
+
+                const hubCanvas = document.createElement('canvas');
+                hubCanvas.width = 512;
+                hubCanvas.height = 128;
+                const hctx = hubCanvas.getContext('2d');
+                hctx.fillStyle = 'rgba(7, 7, 13, 0.9)';
+                hctx.roundRect(10, 10, 492, 108, 18);
+                hctx.fill();
+                hctx.strokeStyle = cfg.hex;
+                hctx.lineWidth = 4;
+                hctx.stroke();
+                hctx.fillStyle = '#ffffff';
+                hctx.font = 'bold 32px sans-serif';
+                hctx.textAlign = 'center';
+                hctx.fillText(cfg.name.toUpperCase(), 256, 58);
+                hctx.fillStyle = cfg.hex;
+                hctx.font = 'bold 22px monospace';
+                hctx.fillText('NEURAL CLUSTER HUB', 256, 92);
+
+                const hubLabel = new THREE.Mesh(
+                    new THREE.PlaneGeometry(2.6, 0.65),
+                    new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(hubCanvas), transparent: true, side: THREE.DoubleSide })
+                );
+                hubLabel.position.y = 1.3;
+                hubMesh.add(hubLabel);
+
+                hubMesh.userData = { isHub: true, clusterKey: catKey, clusterName: cfg.name, labelMesh: hubLabel };
+                allNeuronMeshes.push(hubMesh);
+                clusterHubMeshes.push(hubMesh);
+                scene.add(hubMesh);
+
+                clusterHubs[catKey] = { hubMesh, center: hubCenter, color: cfg.color, nodes: [] };
+
+                const origin = (hubCenter.x < 0) ? handL : handR;
+                const mid = new THREE.Vector3((origin.x + hubCenter.x) * 0.5, (origin.y + hubCenter.y) * 0.5 + 1.2, (origin.z + hubCenter.z) * 0.5);
+                const curve = new THREE.QuadraticBezierCurve3(origin, mid, hubCenter);
+                const lineGeom = new THREE.BufferGeometry().setFromPoints(curve.getPoints(40));
+                const lineMat = new THREE.LineBasicMaterial({ color: cfg.color, transparent: true, opacity: 0.75, linewidth: 2 });
+                const mainLine = new THREE.Line(lineGeom, lineMat);
+                scene.add(mainLine);
+
+                const photon = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 12), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+                scene.add(photon);
+                actionPotentials.push({ curve, photon, speed: 0.35 });
+            });
+
+            NEURAL_GRAPH.nodes.forEach((repo, idx) => {
+                const nodePos = new THREE.Vector3(...repo.pos);
+                const clusterCfg = NEURAL_GRAPH.clusters[repo.cluster];
+                const clusterColor = clusterCfg.color;
+
+                const neuronGroup = new THREE.Group();
+                neuronGroup.position.copy(nodePos);
+
+                const isFlagship = (repo.name === 'vss-self-deciding-agent' || repo.name === 'academia-nexus' || repo.name === 'creatorlang' || repo.name === 'hand-gesture' || repo.name === 'classivo3');
+                const somaSize = isFlagship ? 0.45 : 0.28;
+
+                const somaGeom = new THREE.SphereGeometry(somaSize, 16, 16);
+                const somaMat = new THREE.MeshStandardMaterial({
+                    color: clusterColor,
+                    emissive: clusterColor,
+                    emissiveIntensity: isFlagship ? 0.9 : 0.5,
                     roughness: 0.2,
                     metalness: 0.8
                 });
-                const polyMesh = new THREE.Mesh(polyGeom, polyMat);
-                nodeGroup.add(polyMesh);
+                const soma = new THREE.Mesh(somaGeom, somaMat);
+                neuronGroup.add(soma);
 
-                // Inner luminous glowing sphere
-                const innerGeom = new THREE.SphereGeometry(0.3, 16, 16);
-                const innerMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-                const innerMesh = new THREE.Mesh(innerGeom, innerMat);
-                nodeGroup.add(innerMesh);
-
-                // Orbiting Ring on Node
-                const nodeRingGeom = new THREE.TorusGeometry(1.1, 0.02, 12, 48);
-                const nodeRingMat = new THREE.MeshBasicMaterial({ color: proj.color, transparent: true, opacity: 0.6 });
-                const nodeRing = new THREE.Mesh(nodeRingGeom, nodeRingMat);
-                nodeGroup.add(nodeRing);
-
-                // B. Floating Holographic Billboard with Title & Description
-                const cardCanvas = document.createElement('canvas');
-                cardCanvas.width = 512;
-                cardCanvas.height = 256;
-                const cctx = cardCanvas.getContext('2d');
-
-                // Card background
-                cctx.fillStyle = 'rgba(10, 10, 20, 0.85)';
-                cctx.roundRect(10, 10, 492, 236, 24);
-                cctx.fill();
-
-                // Border
-                const hexColor = '#' + proj.color.toString(16).padStart(6, '0');
-                cctx.strokeStyle = hexColor;
-                cctx.lineWidth = 4;
-                cctx.stroke();
-
-                // Tag
-                cctx.fillStyle = hexColor;
-                cctx.font = 'bold 18px monospace';
-                cctx.fillText(proj.tag, 35, 52);
-
-                // Title
-                cctx.fillStyle = '#ffffff';
-                cctx.font = 'bold 30px sans-serif';
-                cctx.fillText(proj.title, 35, 96);
-
-                // Tech
-                cctx.fillStyle = '#94a3b8';
-                cctx.font = '20px monospace';
-                cctx.fillText(proj.tech, 35, 134);
-
-                // Call to action
-                cctx.fillStyle = '#38bdf8';
-                cctx.font = 'bold 20px monospace';
-                cctx.fillText('► Click to Inspect 3D Spec', 35, 195);
-
-                const cardTex = new THREE.CanvasTexture(cardCanvas);
-                const cardGeom = new THREE.PlaneGeometry(3.2, 1.6);
-                const cardMat = new THREE.MeshBasicMaterial({
-                    map: cardTex,
+                const shellGeom = new THREE.OctahedronGeometry(somaSize * 1.4, 0);
+                const shellMat = new THREE.MeshBasicMaterial({
+                    color: clusterColor,
+                    wireframe: true,
                     transparent: true,
-                    side: THREE.DoubleSide
+                    opacity: 0.4
                 });
-                const cardMesh = new THREE.Mesh(cardGeom, cardMat);
-                cardMesh.position.y = 1.6;
-                nodeGroup.add(cardMesh);
+                const shell = new THREE.Mesh(shellGeom, shellMat);
+                neuronGroup.add(shell);
 
-                // Register node for Raycasting
-                polyMesh.userData = { project: proj, parentGroup: nodeGroup, cardMesh: cardMesh };
-                cardMesh.userData = { project: proj, parentGroup: nodeGroup, cardMesh: cardMesh };
-                projectNodes.push(polyMesh);
-                projectNodes.push(cardMesh);
+                const labelCanvas = document.createElement('canvas');
+                labelCanvas.width = 384;
+                labelCanvas.height = 112;
+                const lctx = labelCanvas.getContext('2d');
+                lctx.fillStyle = 'rgba(7, 7, 13, 0.82)';
+                lctx.roundRect(6, 6, 372, 100, 14);
+                lctx.fill();
+                lctx.strokeStyle = clusterCfg.hex;
+                lctx.lineWidth = 3;
+                lctx.stroke();
 
-                scene.add(nodeGroup);
+                lctx.fillStyle = '#ffffff';
+                lctx.font = 'bold 24px monospace';
+                lctx.textAlign = 'center';
+                const displayName = repo.name.length > 20 ? repo.name.slice(0, 18) + '..' : repo.name;
+                lctx.fillText(displayName, 192, 46);
 
-                // C. Glowing 3D "Take Line" (Synaptic Laser Conduit connecting character to node)
-                const startPoint = (proj.pos.x < 0) ? handOriginL : handOriginR;
-                const midPoint = new THREE.Vector3(
-                    (startPoint.x + proj.pos.x) * 0.5,
-                    (startPoint.y + proj.pos.y) * 0.5 + 1.5,
-                    (startPoint.z + proj.pos.z) * 0.5
+                lctx.fillStyle = clusterCfg.hex;
+                lctx.font = 'bold 18px monospace';
+                lctx.fillText(repo.language.toUpperCase(), 192, 82);
+
+                const labelTex = new THREE.CanvasTexture(labelCanvas);
+                const labelMesh = new THREE.Mesh(
+                    new THREE.PlaneGeometry(isFlagship ? 2.2 : 1.7, isFlagship ? 0.65 : 0.5),
+                    new THREE.MeshBasicMaterial({ map: labelTex, transparent: true, side: THREE.DoubleSide })
                 );
+                labelMesh.position.y = somaSize + 0.5;
+                neuronGroup.add(labelMesh);
 
-                const curve = new THREE.QuadraticBezierCurve3(startPoint, midPoint, proj.pos);
-                const points = curve.getPoints(50);
-                const lineGeom = new THREE.BufferGeometry().setFromPoints(points);
-                const lineMat = new THREE.LineBasicMaterial({
-                    color: proj.color,
-                    transparent: true,
-                    opacity: 0.65,
-                    linewidth: 2
-                });
-                const line = new THREE.Line(lineGeom, lineMat);
-                scene.add(line);
-
-                // Traveling Energy Photon on Line
-                const photonGeom = new THREE.SphereGeometry(0.08, 8, 8);
-                const photonMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-                const photon = new THREE.Mesh(photonGeom, photonMat);
-                scene.add(photon);
-
-                connectionLines.push({
-                    lineMesh: line,
-                    curve: curve,
-                    photon: photon,
-                    speed: 0.2 + idx * 0.05,
-                    color: proj.color
-                });
-            });
-        }
-
-        // --- 4. Outer Orbital Constellation of all 85+ Repositories ---
-        async function buildOrbitalRepoBelt() {
-            let repos = [];
-            try {
-                const res = await fetch('https://api.github.com/users/siddharth-1118/repos?per_page=100&sort=updated');
-                if (res.ok) {
-                    repos = await res.json();
-                }
-            } catch(e) {
-                console.warn('Using fallback repository index');
-            }
-
-            if (!repos || repos.length === 0) {
-                // Fallback repo names if offline
-                repos = [
-                    { name: 'vss-office', language: 'TypeScript', stargazers_count: 0 },
-                    { name: 'ground-truth', language: 'Python', stargazers_count: 0 },
-                    { name: 'meet', language: 'TypeScript', stargazers_count: 0 },
-                    { name: 'krishi-vani', language: 'JavaScript', stargazers_count: 0 },
-                    { name: 'bluechat', language: 'Dart', stargazers_count: 0 },
-                    { name: 'srm-ai-hub', language: 'Python', stargazers_count: 0 },
-                    { name: 'vss-maps', language: 'TypeScript', stargazers_count: 0 },
-                    { name: 'Exam-Guard', language: 'TypeScript', stargazers_count: 0 },
-                    { name: 'air_draw', language: 'Python', stargazers_count: 0 },
-                    { name: 'face_unlock', language: 'Python', stargazers_count: 0 }
-                ];
-            }
-
-            document.getElementById('hud-node-count').innerText = repos.length;
-
-            const radius = 17.5;
-            const count = Math.min(repos.length, 85);
-
-            repos.slice(0, count).forEach((repo, i) => {
-                const angle = (i / count) * Math.PI * 2;
-                const yOffset = Math.sin(i * 0.7) * 4.5;
-                const x = Math.cos(angle) * (radius + Math.sin(i * 1.5) * 2.0);
-                const z = Math.sin(angle) * (radius + Math.cos(i * 1.5) * 2.0);
-
-                const satGeom = new THREE.OctahedronGeometry(0.25, 0);
-                const satMat = new THREE.MeshStandardMaterial({
-                    color: 0x38bdf8,
-                    emissive: 0x0284c7,
-                    emissiveIntensity: 0.6,
-                    wireframe: true
-                });
-                const satMesh = new THREE.Mesh(satGeom, satMat);
-                satMesh.position.set(x, yOffset, z);
-
-                // Small connecting dashed filament to center
-                const lineGeom = new THREE.BufferGeometry().setFromPoints([
-                    new THREE.Vector3(0, 0, 0),
-                    new THREE.Vector3(x, yOffset, z)
-                ]);
-                const lineMat = new THREE.LineDashedMaterial({
-                    color: 0x1e293b,
-                    dashSize: 0.5,
-                    gapSize: 0.5,
-                    transparent: true,
-                    opacity: 0.25
-                });
-                const filament = new THREE.Line(lineGeom, lineMat);
-                filament.computeLineDistances();
-                scene.add(filament);
-
-                satMesh.userData = {
-                    isSatellite: true,
+                soma.userData = {
+                    isNeuron: true,
                     repo: repo,
-                    initialPos: satMesh.position.clone(),
-                    angle: angle,
-                    radius: radius
+                    clusterCfg: clusterCfg,
+                    parentGroup: neuronGroup,
+                    shellMesh: shell,
+                    labelMesh: labelMesh,
+                    defaultScale: 1.0,
+                    synapses: []
                 };
 
-                scene.add(satMesh);
-                orbitalSatellites.push(satMesh);
-                projectNodes.push(satMesh);
+                labelMesh.userData = soma.userData;
+
+                allNeuronMeshes.push(soma, labelMesh);
+                scene.add(neuronGroup);
+
+                clusterHubs[repo.cluster].nodes.push({ soma, pos: nodePos });
+
+                const hubPos = clusterHubs[repo.cluster].center;
+                const synGeom = new THREE.BufferGeometry().setFromPoints([hubPos, nodePos]);
+                const synMat = new THREE.LineBasicMaterial({
+                    color: clusterColor,
+                    transparent: true,
+                    opacity: isFlagship ? 0.7 : 0.32,
+                    linewidth: isFlagship ? 2 : 1
+                });
+                const synLine = new THREE.Line(synGeom, synMat);
+                scene.add(synLine);
+                allSynapseLines.push(synLine);
+                soma.userData.synapses.push(synLine);
+
+                if (idx % 2 === 0) {
+                    const synCurve = new THREE.LineCurve3(hubPos, nodePos);
+                    const synPhoton = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+                    scene.add(synPhoton);
+                    actionPotentials.push({ curve: synCurve, photon: synPhoton, speed: 0.15 + (idx % 4) * 0.05 });
+                }
+            });
+
+            Object.values(clusterHubs).forEach(hub => {
+                const nodes = hub.nodes;
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dist = nodes[i].pos.distanceTo(nodes[j].pos);
+                        if (dist < 3.2) {
+                            const interGeom = new THREE.BufferGeometry().setFromPoints([nodes[i].pos, nodes[j].pos]);
+                            const interMat = new THREE.LineBasicMaterial({
+                                color: hub.color,
+                                transparent: true,
+                                opacity: 0.2,
+                                linewidth: 1
+                            });
+                            const interLine = new THREE.Line(interGeom, interMat);
+                            scene.add(interLine);
+                            allSynapseLines.push(interLine);
+                            nodes[i].soma.userData.synapses.push(interLine);
+                            nodes[j].soma.userData.synapses.push(interLine);
+                        }
+                    }
+                }
             });
         }
 
-        // --- Raycasting & Pointer Interactions ---
+        // --- Pointer Move Raycasting & Hover Feedback ---
         function onPointerMove(e) {
             mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
             mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 
-            // Character gaze follows pointer smoothly
             if (headMesh) {
-                headMesh.rotation.y = mouse.x * 0.4;
+                headMesh.rotation.y = mouse.x * 0.45;
                 headMesh.rotation.x = -mouse.y * 0.3;
             }
 
             raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObjects(projectNodes, false);
+            const intersects = raycaster.intersectObjects(allNeuronMeshes, false);
 
             if (intersects.length > 0) {
                 const obj = intersects[0].object;
-                if (hoveredNode !== obj) {
-                    hoveredNode = obj;
+                if (hoveredNeuron !== obj) {
+                    if (hoveredNeuron && hoveredNeuron.userData && hoveredNeuron.userData.isNeuron) {
+                        hoveredNeuron.userData.parentGroup.scale.set(1, 1, 1);
+                        hoveredNeuron.userData.synapses.forEach(l => l.material.opacity = 0.3);
+                    }
+
+                    hoveredNeuron = obj;
                     reticle.classList.add('active');
                     playSound(650, 0.03, 'triangle', 0.03);
+
+                    if (obj.userData && obj.userData.isNeuron) {
+                        obj.userData.parentGroup.scale.set(1.2, 1.2, 1.2);
+                        obj.userData.synapses.forEach(l => l.material.opacity = 0.9);
+                    }
                 }
             } else {
-                if (hoveredNode) {
-                    hoveredNode = null;
+                if (hoveredNeuron) {
+                    if (hoveredNeuron.userData && hoveredNeuron.userData.isNeuron) {
+                        hoveredNeuron.userData.parentGroup.scale.set(1, 1, 1);
+                        hoveredNeuron.userData.synapses.forEach(l => l.material.opacity = 0.3);
+                    }
+                    hoveredNeuron = null;
                     reticle.classList.remove('active');
                 }
             }
         }
 
+        // --- Click Raycasting to Inspect 3D Neuron ---
         function onClick(e) {
-            // Ignore if clicking UI
             if (e.target.closest('header, nav, aside, #repo-search, .glass-panel')) return;
 
             raycaster.setFromCamera(mouse, camera);
-            const intersects = raycaster.intersectObjects(projectNodes, false);
+            const intersects = raycaster.intersectObjects(allNeuronMeshes, false);
 
             if (intersects.length > 0) {
                 const obj = intersects[0].object;
-                playSound(850, 0.1, 'sine', 0.05);
+                playSound(880, 0.1, 'sine', 0.05);
 
-                if (obj.userData.project) {
-                    openProjectDrawer(obj.userData.project);
-                    flyCameraTo(obj.userData.parentGroup.position.clone().add(new THREE.Vector3(0, 0, 5)), obj.userData.parentGroup.position);
-                } else if (obj.userData.isSatellite) {
-                    openSatelliteDrawer(obj.userData.repo);
-                    flyCameraTo(obj.position.clone().add(new THREE.Vector3(0, 0, 3)), obj.position);
+                if (obj.userData && obj.userData.isNeuron) {
+                    openNeuronDrawer(obj.userData.repo, obj.userData.clusterCfg);
+                    flyCameraTo(obj.userData.parentGroup.position.clone().add(new THREE.Vector3(0, 0, 3.8)), obj.userData.parentGroup.position);
+                } else if (obj.userData && obj.userData.isHub) {
+                    flyToCluster(obj.userData.clusterKey);
+                } else if (obj.userData && obj.userData.isCharacter) {
+                    flyToTarget('architect');
                 }
             }
         }
 
         // --- Camera Navigation Presets ---
-        function flyToTarget(targetKey) {
+        function flyToTarget(key) {
             playSound(600, 0.08);
 
             document.querySelectorAll('.cam-btn').forEach(b => {
                 b.className = 'cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all';
             });
-            const activeBtn = document.getElementById(`btn-${targetKey}`);
-            if (activeBtn) {
-                activeBtn.className = 'cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-white font-bold bg-brand-600 border border-brand-400 flex items-center space-x-1.5 whitespace-nowrap shadow-md shadow-brand-500/30 transition-all';
+            const btn = document.getElementById(`btn-${key}`);
+            if (btn) {
+                btn.className = 'cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-white font-bold bg-brand-600 border border-brand-400 flex items-center space-x-1.5 whitespace-nowrap shadow-md shadow-brand-500/30 transition-all';
             }
 
-            if (targetKey === 'architect') {
+            if (key === 'architect') {
                 closeDetailDrawer();
                 flyCameraTo(new THREE.Vector3(0, 1.4, 4.2), new THREE.Vector3(0, 1.2, 0));
-            } else if (targetKey === 'overview') {
+            } else if (key === 'overview') {
                 closeDetailDrawer();
-                flyCameraTo(new THREE.Vector3(0, 3, 16), new THREE.Vector3(0, 1.2, 0));
-            } else if (targetKey === 'galaxy') {
-                closeDetailDrawer();
-                flyCameraTo(new THREE.Vector3(0, 18, 26), new THREE.Vector3(0, 0, 0));
-            } else {
-                const proj = featuredProjects.find(p => p.id === targetKey);
-                if (proj) {
-                    openProjectDrawer(proj);
-                    flyCameraTo(proj.pos.clone().add(new THREE.Vector3(0, 0, 4.5)), proj.pos);
-                }
+                flyCameraTo(new THREE.Vector3(0, 4, 22), new THREE.Vector3(0, 1.2, 0));
+            }
+        }
+
+        function flyToCluster(clusterKey) {
+            playSound(650, 0.08);
+
+            document.querySelectorAll('.cam-btn').forEach(b => {
+                b.className = 'cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-gray-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 flex items-center space-x-1.5 whitespace-nowrap transition-all';
+            });
+            const btn = document.getElementById(`btn-${clusterKey}`);
+            if (btn) {
+                btn.className = 'cam-btn px-3 py-1.5 rounded-xl text-xs font-mono uppercase tracking-wider text-white font-bold bg-brand-600 border border-brand-400 flex items-center space-x-1.5 whitespace-nowrap shadow-md shadow-brand-500/30 transition-all';
+            }
+
+            const cfg = NEURAL_GRAPH.clusters[clusterKey];
+            if (cfg) {
+                const targetPos = new THREE.Vector3(...cfg.center);
+                flyCameraTo(targetPos.clone().add(new THREE.Vector3(0, 1, 9)), targetPos);
             }
         }
 
@@ -1083,35 +849,35 @@
                 .start();
         }
 
-        // --- Holographic Detail Drawer Logic ---
-        function openProjectDrawer(proj) {
-            document.getElementById('drawer-tag').innerText = proj.tag;
-            document.getElementById('drawer-title').innerText = proj.title;
-            document.getElementById('drawer-desc').innerText = proj.desc;
-            document.getElementById('drawer-eco').innerText = proj.category;
-            document.getElementById('drawer-img').src = proj.img;
-            document.getElementById('drawer-github-link').href = proj.url;
-            document.getElementById('drawer-clone-btn').setAttribute('data-clone', proj.clone);
-            document.getElementById('drawer-clone-text').innerText = 'Copy git clone command';
-
-            const badgeContainer = document.getElementById('drawer-badges');
-            badgeContainer.innerHTML = proj.tech.split('•').map(t => `<span class="px-2.5 py-0.5 rounded-md bg-brand-500/20 text-brand-300 border border-brand-500/30">${t.trim()}</span>`).join('');
-
-            document.getElementById('detail-drawer').classList.remove('translate-x-full');
-        }
-
-        function openSatelliteDrawer(repo) {
-            document.getElementById('drawer-tag').innerText = 'OPEN-SOURCE REPOSITORY';
+        // --- Holographic Detail Drawer ---
+        function openNeuronDrawer(repo, clusterCfg) {
+            document.getElementById('drawer-dot').style.backgroundColor = clusterCfg.hex;
+            document.getElementById('drawer-tag').innerText = `SYNAPSE // ${clusterCfg.name.toUpperCase()}`;
+            document.getElementById('drawer-tag').style.color = clusterCfg.hex;
             document.getElementById('drawer-title').innerText = repo.name;
-            document.getElementById('drawer-desc').innerText = repo.description || 'Open-source engineering module developed by Vooka Sai Siddharth under the VSS Core framework.';
-            document.getElementById('drawer-eco').innerText = 'Continuous GitHub Deploy';
-            document.getElementById('drawer-img').src = 'assets/vss-agent-arch.svg';
-            document.getElementById('drawer-github-link').href = repo.html_url || `https://github.com/siddharth-1118/${repo.name}`;
-            document.getElementById('drawer-clone-btn').setAttribute('data-clone', repo.clone_url || `https://github.com/siddharth-1118/${repo.name}.git`);
+            document.getElementById('drawer-desc').innerText = repo.description;
+            document.getElementById('drawer-cluster-name').innerText = clusterCfg.name;
+            document.getElementById('drawer-github-link').href = repo.url;
+            document.getElementById('drawer-clone-btn').setAttribute('data-clone', `${repo.url}.git`);
             document.getElementById('drawer-clone-text').innerText = 'Copy git clone command';
 
-            const badgeContainer = document.getElementById('drawer-badges');
-            badgeContainer.innerHTML = `<span class="px-2.5 py-0.5 rounded-md bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30">${repo.language || 'Code'}</span>`;
+            let previewImg = 'assets/vss-agent-arch.svg';
+            if (repo.name.includes('academia') || repo.name.includes('classivo') || repo.name.includes('skedio')) {
+                previewImg = 'assets/academia-nexus.svg';
+            } else if (repo.name.includes('signal') || repo.name.includes('chat') || repo.name.includes('office')) {
+                previewImg = 'assets/signal-os.svg';
+            } else if (repo.name.includes('gesture') || repo.name.includes('vision') || repo.name.includes('face') || repo.name.includes('draw')) {
+                previewImg = 'assets/vision-suite.svg';
+            } else if (repo.name.includes('creatorlang') || repo.name.includes('lang') || repo.name.includes('devlang')) {
+                previewImg = 'assets/creatorlang.svg';
+            }
+            document.getElementById('drawer-img').src = previewImg;
+
+            const badgeBox = document.getElementById('drawer-badges');
+            badgeBox.innerHTML = `
+                <span class="px-2.5 py-0.5 rounded-md bg-brand-500/20 text-brand-300 border border-brand-500/30">${repo.language}</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-white/5 text-gray-300 border border-white/10">Active Synapse</span>
+            `;
 
             document.getElementById('detail-drawer').classList.remove('translate-x-full');
         }
@@ -1131,7 +897,7 @@
             }, 2000);
         }
 
-        // --- Instant Search across 3D Nodes ---
+        // --- Live Search across 82 Neurons ---
         function handleSearch(val) {
             const dropdown = document.getElementById('search-dropdown');
             if (!val.trim()) {
@@ -1142,36 +908,34 @@
             const query = val.toLowerCase();
             const matches = [];
 
-            featuredProjects.forEach(p => {
-                if (p.name.toLowerCase().includes(query) || p.title.toLowerCase().includes(query)) {
-                    matches.push({ title: p.title, type: 'Featured', action: () => flyToTarget(p.id) });
-                }
-            });
-
-            orbitalSatellites.forEach(sat => {
-                if (sat.userData.repo && sat.userData.repo.name.toLowerCase().includes(query)) {
-                    matches.push({
-                        title: sat.userData.repo.name,
-                        type: 'Repository',
-                        action: () => {
-                            openSatelliteDrawer(sat.userData.repo);
-                            flyCameraTo(sat.position.clone().add(new THREE.Vector3(0, 0, 3)), sat.position);
-                        }
-                    });
+            allNeuronMeshes.forEach(mesh => {
+                if (mesh.userData && mesh.userData.isNeuron) {
+                    const repo = mesh.userData.repo;
+                    if (repo.name.toLowerCase().includes(query) || repo.description.toLowerCase().includes(query)) {
+                        matches.push({
+                            name: repo.name,
+                            lang: repo.language,
+                            cluster: mesh.userData.clusterCfg.name,
+                            action: () => {
+                                openNeuronDrawer(repo, mesh.userData.clusterCfg);
+                                flyCameraTo(mesh.userData.parentGroup.position.clone().add(new THREE.Vector3(0, 0, 3.8)), mesh.userData.parentGroup.position);
+                            }
+                        });
+                    }
                 }
             });
 
             if (matches.length > 0) {
-                dropdown.innerHTML = matches.slice(0, 6).map((m, idx) => `
+                dropdown.innerHTML = matches.slice(0, 8).map((m, idx) => `
                     <div onclick="executeSearchMatch(${idx})" class="p-2 rounded-lg bg-dark-900/90 hover:bg-brand-600/30 border border-white/5 cursor-pointer flex justify-between items-center text-gray-200 hover:text-white">
-                        <span>${m.title}</span>
-                        <span class="text-[10px] text-brand-400 uppercase">${m.type}</span>
+                        <span>${m.name}</span>
+                        <span class="text-[10px] text-brand-400 uppercase">${m.lang}</span>
                     </div>
                 `).join('');
                 dropdown.classList.remove('hidden');
                 window.currentSearchMatches = matches;
             } else {
-                dropdown.innerHTML = '<div class="p-2 text-gray-500 text-center">No node matches</div>';
+                dropdown.innerHTML = '<div class="p-2 text-gray-500 text-center">No neuron matches</div>';
                 dropdown.classList.remove('hidden');
             }
         }
@@ -1184,65 +948,61 @@
             }
         }
 
-        // --- Resize Handler ---
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
-        // --- Continuous 60fps Animation Loop ---
+        // --- 60fps Animation Loop ---
         function animate() {
             requestAnimationFrame(animate);
             TWEEN.update();
 
             const time = clock.getElapsedTime();
-
             controls.update();
 
-            // 1. Idle breathing and bobbing of Sai Siddharth's character
             if (characterGroup) {
                 characterGroup.position.y = Math.sin(time * 1.5) * 0.12;
             }
 
-            // 2. Rotate Pedestal Dais Rings
             daisRings.forEach((r, idx) => {
                 r.rotation.z += (idx % 2 === 0 ? 0.008 : -0.008);
             });
 
-            // 3. Pulse Arc Reactor core light
             if (coreLight) {
                 coreLight.intensity = 2.0 + Math.sin(time * 3) * 0.8;
             }
 
-            // 4. Update 3D "Take Lines" with traveling photon pulses
-            connectionLines.forEach(item => {
-                const t = (time * item.speed) % 1.0;
-                const pos = item.curve.getPointAt(t);
-                item.photon.position.copy(pos);
-            });
-
-            // 5. Billboard cards always face the camera
-            projectNodes.forEach(node => {
-                if (node.isMesh && node.userData.cardMesh === node) {
-                    node.quaternion.copy(camera.quaternion);
+            clusterHubMeshes.forEach(hub => {
+                hub.rotation.y += 0.01;
+                hub.rotation.x += 0.005;
+                if (hub.userData.labelMesh) {
+                    hub.userData.labelMesh.quaternion.copy(camera.quaternion);
                 }
             });
 
-            // 6. Orbit the outer 85+ repo satellites
-            orbitalSatellites.forEach((sat, i) => {
-                const speed = 0.05 + (i % 5) * 0.01;
-                const angle = sat.userData.angle + time * speed * 0.2;
-                sat.position.x = Math.cos(angle) * sat.userData.radius;
-                sat.position.z = Math.sin(angle) * sat.userData.radius;
-                sat.rotation.x += 0.02;
-                sat.rotation.y += 0.03;
+            allNeuronMeshes.forEach(mesh => {
+                if (mesh.userData && mesh.userData.isNeuron) {
+                    if (mesh.userData.labelMesh) {
+                        mesh.userData.labelMesh.quaternion.copy(camera.quaternion);
+                    }
+                    if (mesh.userData.shellMesh) {
+                        mesh.userData.shellMesh.rotation.x += 0.01;
+                        mesh.userData.shellMesh.rotation.y += 0.015;
+                    }
+                }
+            });
+
+            actionPotentials.forEach(ap => {
+                const t = (time * ap.speed) % 1.0;
+                const pos = ap.curve.getPointAt(t);
+                ap.photon.position.copy(pos);
             });
 
             renderer.render(scene, camera);
         }
 
-        // Initialize on load
         window.addEventListener('DOMContentLoaded', initScene);
     </script>
 </body>
