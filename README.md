@@ -45,7 +45,7 @@ I am a 2nd-year B.Tech student at **SRM Institute of Science and Technology**, s
 - 🎓 **Currently studying:** B.Tech at SRM (Kattankulathur)
 - 💻 **Currently working on:** The **VSS Core Ecosystem** (including VSS-Chat, VSS-Entertainments, and SIGNAL AI OS)
 - 🧠 **Currently learning:** Advanced Machine Learning (PyTorch, Deep Learning) & Embedded Electronics (Circuit Analysis, Microcontrollers)
-- 🌐 **Portfolio:** [siddharth-1118.github.io](https://siddharth-1118.github.io/siddharth-1118/)
+- 🌐 **Interactive 3D Portfolio:** [siddharth-1118.github.io/siddharth-1118](https://siddharth-1118.github.io/siddharth-1118/)
 
 ---
 
